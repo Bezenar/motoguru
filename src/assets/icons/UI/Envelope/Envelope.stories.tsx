@@ -1,29 +1,25 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import Envelope from './Envelope';
+import Envelope from '.';
+import StoryThemeSwitcher from '../../../../_utils/storybook/ThemeSwitcher';
 
 export default {
-  title: 'Icons/UI/Envelope',
-  component: Envelope,
-  argTypes: {
-    theme: {
-        control: 'inline-radio',
-        options: ['dark', 'light'],
-        description: 'Set theme color'
-    }
-  },
+    title: 'Icons/UI/Envelope',
+    component: Envelope,
+    argTypes: {},
+    parameters: {
+        docs: {page: null}
+    },
+    decorators: [
+        (Story) => (
+            <div>
+                <StoryThemeSwitcher Story={Story} />
+            </div>
+        )
+    ]
 } as ComponentMeta<typeof Envelope>;
 
-const Template: ComponentStory<typeof Envelope> = (args) => (
-    <div style={{
-            padding: 4
-        }}
-    >
-        <Envelope {...args} />
-    </div>
-);
+const Template: ComponentStory<typeof Envelope> = () => (<Envelope />);
 
 export const Default = Template.bind({});
 
-Default.args = {
-    theme: 'dark'
-};
+Default.args = {};

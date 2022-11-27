@@ -1,18 +1,18 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import LangENG from '.';
+import FullLogo from '.';
 
 export default {
-    title: 'Icons/languages/ENG',
-    component: LangENG,
+    title: 'logo/Full logo',
+    component: FullLogo,
     argTypes: {},
     parameters: {
         docs: {
             page: null,
         },
     },
-} as ComponentMeta<typeof LangENG>;
+} as ComponentMeta<typeof FullLogo>;
 
-const Template: ComponentStory<typeof LangENG> = () => <LangENG />;
+const Template: ComponentStory<typeof FullLogo> = () => <FullLogo />;
 
 export const Default = Template.bind({});
 

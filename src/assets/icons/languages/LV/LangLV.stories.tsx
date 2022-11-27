@@ -1,5 +1,5 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import LangLV from './LangLV';
+import LangLV from '.';
 
 export default {
     title: 'Icons/languages/LV',

@@ -1,3 +1,1 @@
-export type T_Icon = {
-    theme: 'dark' | 'light'
-}
+export type T_IconStar = {state: 'empty' | 'full' | 'half'};

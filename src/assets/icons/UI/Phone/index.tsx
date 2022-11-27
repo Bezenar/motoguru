@@ -1,8 +1,11 @@
+import {useMemo} from 'react';
+import {LS_THEME_KEY} from '../../../../constants/localStorage';
 import {UI_ICON_DARK, UI_ICON_LIGHT} from '../../../constants';
-import {T_Icon} from '../../../../types/icon';
 
-const Phone: React.FC<Readonly<T_Icon>> = ({theme}) => {
-    const color = theme === 'dark' ? UI_ICON_DARK : UI_ICON_LIGHT;
+const Phone: React.FC<{}> = ({}) => {
+    const color = useMemo(() => {
+        return localStorage.getItem(LS_THEME_KEY) === 'd' ? UI_ICON_DARK : UI_ICON_LIGHT
+    }, [localStorage.getItem(LS_THEME_KEY)]);
 
     return(
         <svg id="Phone" xmlns="http://www.w3.org/2000/svg" width="24" height="24.012" viewBox="0 0 24 24.012">

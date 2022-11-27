@@ -1,0 +1,15 @@
+.bg {
+    @include generateBgClasses($commonColors, true, true, true);
+}
+
+.d {
+    &.bg {
+        @include generateBgClasses($darkTheme, true, true, true);
+    }
+}
+
+.l {
+    &.bg {
+        @include generateBgClasses($lightTheme, true, true, true);
+    }
+}

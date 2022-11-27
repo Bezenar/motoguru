@@ -1,31 +1,24 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import YTIcon from './YTIcon';
+import YTIcon from '.';
 
 export default {
-  title: 'Icons/social/YTIcon',
-  component: YTIcon,
-  argTypes: {
-    theme: {
-        control: 'inline-radio',
-        options: ['dark', 'light'],
-        description: 'Set theme color'
-    }
-  },
+    title: 'Icons/social/YTIcon',
+    component: YTIcon,
+    argTypes: {},
+    parameters: {
+        docs: {page: null}
+    },
+    decorators: [
+        (Story) => (
+            <div className="pa-2 bg--black flex inline">
+                <Story />
+            </div>
+        )
+    ]
 } as ComponentMeta<typeof YTIcon>;
 
-const Template: ComponentStory<typeof YTIcon> = (args) => (
-    <div style={{
-            background: args.theme === 'dark' ? '#000000' : '#FFFFFF',
-            display: 'inline-flex',
-            padding: 4
-        }}
-    >
-        <YTIcon {...args} />
-    </div>
-);
+const Template: ComponentStory<typeof YTIcon> = (args) => (<YTIcon {...args} />);
 
 export const Default = Template.bind({});
 
-Default.args = {
-    theme: 'dark'
-};
+Default.args = {};

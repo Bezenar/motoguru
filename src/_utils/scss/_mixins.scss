@@ -1,0 +1,44 @@
+@mixin generateBgClasses($colorArr, $addHover: false, $addBefore: false, $addAfter: false) {
+    @each $colorKey, $colorValue in $colorArr {
+        &--#{$colorKey} {
+            background-color: $colorValue;
+            @if($addHover != false) {
+                @if($colorKey != 'gradient') {
+                    &--hover {
+                        &:hover {
+                            background-color: $colorValue
+                        }
+                    }
+                }
+            }
+            @if($addBefore != false) {
+                &--before {
+                    &::before {
+                        background-color: $colorValue
+                    }
+                    &--hover {
+                        &:hover {
+                            &::before {
+                                background-color: $colorValue
+                            }   
+                        }
+                    }
+                }
+            }
+            @if($addAfter != false) {
+                &--after {
+                    &::after {
+                        background-color: $colorValue
+                    }
+                    &--hover {
+                        &:hover {
+                            &::after {
+                                background-color: $colorValue
+                            }   
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,11 +1,17 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import Location from '.';
+import Star from '.';
 import StoryThemeSwitcher from '../../../../_utils/storybook/ThemeSwitcher';
 
 export default {
-    title: 'Icons/UI/Location',
-    component: Location,
-    argTypes: {},
+    title: 'Icons/UI/Star',
+    component: Star,
+    argTypes: {
+        state: {
+            control: 'inline-radio',
+            options: ['empty', 'full', 'half'],
+            description: 'Set icon state'
+        }
+    },
     parameters: {
         docs: {page: null}
     },
@@ -16,19 +22,17 @@ export default {
             </div>
         )
     ]
-} as ComponentMeta<typeof Location>;
+} as ComponentMeta<typeof Star>;
 
-const Template: ComponentStory<typeof Location> = (args) => (
+const Template: ComponentStory<typeof Star> = (args) => (
     <div style={{
             padding: 4
         }}
     >
-        <Location {...args} />
+        <Star {...args} />
     </div>
 );
 
 export const Default = Template.bind({});
 
-Default.args = {
-    theme: 'd'
-};
+Default.args = {state: 'full'};

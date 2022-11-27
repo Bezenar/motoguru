@@ -1,5 +1,5 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import LangRUS from './LangRus';
+import LangRUS from '.';
 
 export default {
   title: 'Icons/languages/RUS',

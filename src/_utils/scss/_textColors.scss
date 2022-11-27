@@ -1,0 +1,19 @@
+.text {
+    @each $colorKey, $colorValue in $commonColors {
+        &--#{$colorKey} {
+            color: $colorValue;
+        }
+    }
+}
+
+.d {
+    &.text {
+        color: map-get($commonColors, 'white');
+    }
+}
+
+.l {
+    &.text {
+        color: map-get($commonColors, 'white');
+    }
+}

@@ -1,9 +1,14 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './_examples/store';
+import {createRoot} from 'react-dom/client';
+import {Provider} from 'react-redux';
+import {store} from './_examples/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {LS_LANG_KEY, LS_THEME_KEY} from './constants/localStorage';
+import {DEFAULT_LANG, DEFAULT_THEME} from './constants/default';
+
+if(!localStorage.getItem(LS_THEME_KEY)) localStorage.setItem(LS_THEME_KEY, DEFAULT_THEME);
+if(!localStorage.getItem(LS_LANG_KEY)) localStorage.setItem(LS_LANG_KEY, DEFAULT_LANG);
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
