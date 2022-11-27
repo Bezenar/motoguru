@@ -1,0 +1,23 @@
+.label {
+    display: inline-block;
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    transition: all 0.3s ease;
+    position: relative
+}
+
+.input {
+    outline: none;
+    border: none;
+    padding: 10px 16px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.required {
+    position: absolute;   
+    top: 50%;
+    right: 4px;
+    transform: translate(-50%, -50%);
+}

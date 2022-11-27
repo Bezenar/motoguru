@@ -1,19 +1,32 @@
-.text {
-    @each $colorKey, $colorValue in $commonColors {
-        &--#{$colorKey} {
-            color: $colorValue;
-        }
-    }
-}
+@include classesGenerator(
+    'text',
+    'color',
+    $commonColors,
+    (
+        addHover: true,
+    )
+);
 
 .d {
-    &.text {
-        color: map-get($commonColors, 'white');
-    }
+    @include classesGenerator(
+        'text',
+        'color',
+        $darkTheme,
+        (
+            addHover: true,
+            oneLvl: true,
+        )
+    );
 }
 
 .l {
-    &.text {
-        color: map-get($commonColors, 'white');
-    }
+    @include classesGenerator(
+        'text',
+        'color',
+        $lightTheme,
+        (
+            addHover: true,
+            oneLvl: true,
+        )
+    );
 }

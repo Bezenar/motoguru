@@ -3,11 +3,12 @@ import Button, {I_Button} from '.';
 import ThemeSwitcher from '../../../_utils/storybook/ThemeSwitcher';
 
 export default {
-    title: 'Components/Button',
+    title: 'Atoms/Button',
     component: Button,
     argTypes: {
-        innerText: {control: 'text'},
-        outlined: {control: 'boolean'}
+        innerText: {control: 'text', description: 'Text passed inside button'},
+        outlined: {control: 'boolean', description: 'Set outlined button'},
+        onClick: {control: null}
     },
     decorators: [
         (Story) => (

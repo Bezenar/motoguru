@@ -1,44 +1,73 @@
-@mixin generateBgClasses($colorArr, $addHover: false, $addBefore: false, $addAfter: false) {
-    @each $colorKey, $colorValue in $colorArr {
-        &--#{$colorKey} {
-            background-color: $colorValue;
-            @if($addHover != false) {
-                @if($colorKey != 'gradient') {
-                    &--hover {
-                        &:hover {
-                            background-color: $colorValue
-                        }
-                    }
-                }
-            }
-            @if($addBefore != false) {
-                &--before {
-                    &::before {
-                        background-color: $colorValue
-                    }
-                    &--hover {
-                        &:hover {
-                            &::before {
-                                background-color: $colorValue
-                            }   
-                        }
-                    }
-                }
-            }
-            @if($addAfter != false) {
-                &--after {
-                    &::after {
-                        background-color: $colorValue
-                    }
-                    &--hover {
-                        &:hover {
-                            &::after {
-                                background-color: $colorValue
-                            }   
-                        }
-                    }
-                }
-            }
+@mixin classesGenerator(
+    $classPrefix,
+    $property,
+    $colorArr,
+    $options: (
+        oneLvl: false,
+        addHover: false,
+        addBefore: false,
+        addAfter: false,
+        addFocus: false,
+        useGradient: false
+    )
+) {
+    #{if(& and map-get($options, 'oneLvl') == true,'&.','.') + $classPrefix} { /// scss-lint:disable
+        @if(map-get($options, 'useGradient') != true) {
+            $colorArr: map-remove($colorArr, 'gradient');
         }
+        @each $colorKey, $colorValue in $colorArr {
+            &--#{$colorKey} {
+                #{$property}: $colorValue;
+                @if(map-get($options, 'addHover') == true) {
+                    &--hover {
+                        &:hover {
+                            #{$property}: $colorValue;            
+                        }
+                        @if(map-get($options, 'addBefore') == true) {
+                            &--before {
+                                &:hover {
+                                    &::before {
+                                        #{$property}: $colorValue;
+                                    }
+                                }
+                            }
+                        }
+                        @if(map-get($options, 'addAfter') == true) {
+                            &--after {
+                                &:hover {
+                                    &::after {
+                                        #{$property}: $colorValue;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                @if(map-get($options, 'addBefore') == true) {
+                    &--before {
+                        &::before {
+                            #{$property}: $colorValue;
+                        }
+                    }
+                }
+                
+                @if(map-get($options, 'addAfter') == true) {
+                    &--after {
+                        &::after {
+                            #{$property}: $colorValue;
+                        }
+                    }
+                }
+                
+                @if(map-get($options, 'addFocus') == true) {
+                    &--focus {
+                        &:focus {
+                            #{$property}: $colorValue;    
+                        }
+                    }
+                }
+            }
+        }   
     }
 }

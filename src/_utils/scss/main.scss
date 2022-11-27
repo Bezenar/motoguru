@@ -8,11 +8,12 @@
 @import './_fonts.scss';
 @import './_backgrounds.scss';
 @import './_textColors.scss';
-@import './boders';
+@import './borders';
 
 
 $containerMaxWidth: 1200px;
 $containerWidth: 85%;
+$errorColor: map-get($darkTheme, 'primary');
 
 .container {
     width: $containerWidth;
@@ -35,5 +36,25 @@ $containerWidth: 85%;
 
     &--center {
         text-align: center;
+    }
+}
+
+.border--error {
+    border-color: $errorColor;
+}
+
+.error {
+    color: $errorColor;
+}
+
+.d {
+    &.pageBg {
+        background-color: map-get($commonColors, 'black');
+    }
+}
+
+.l {
+    &.pageBg {
+        background-color: map-get($commonColors, 'grey');
     }
 }

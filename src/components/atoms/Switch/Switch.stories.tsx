@@ -3,10 +3,11 @@ import Switch, {I_Switch} from '.';
 import StoryThemeSwitcher from '../../../_utils/storybook/ThemeSwitcher';
 
 export default {
-    title: 'Components/Switch',
+    title: 'Atoms/Switch',
     component: Switch,
     argTypes: {
-        checked: {control: 'boolean'},
+        checked: {control: 'boolean', description: 'on/off switcher state'},
+        onChange: {control: null}
     },
     decorators: [
         (Story) => (

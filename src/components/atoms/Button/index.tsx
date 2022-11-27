@@ -20,9 +20,8 @@ const Button: React.FC<Readonly<I_Button>> = ({innerText, outlined = false, onCl
                 {'text': !outlined},
                 {'bg--primary bg--secondary--hover': !outlined},
                 {[styles.bordered]: outlined},
-                {'bg--grey--hover': outlined},
-                {'text--white border--white': outlined && localStorage.getItem(LS_THEME_KEY) === 'd'},
-                {'text--black border--black': outlined && localStorage.getItem(LS_THEME_KEY) === 'l'},
+                {'text--white border--white bg--grey--hover': outlined && localStorage.getItem(LS_THEME_KEY) === 'd'},
+                {'text--black border--black bg--white--hover': outlined && localStorage.getItem(LS_THEME_KEY) === 'l'},
             ])}
             onClick={handleClick}
         >

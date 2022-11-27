@@ -1,15 +1,38 @@
-.bg {
-    @include generateBgClasses($commonColors, true, true, true);
-}
+@include classesGenerator(
+    'bg',
+    'background-color',
+    $commonColors,
+    (
+        addHover: true,
+        oneLvl: true,
+        useGradient: true
+    )
+);
 
 .d {
-    &.bg {
-        @include generateBgClasses($darkTheme, true, true, true);
-    }
+    @include classesGenerator(
+        'bg',
+        'background-color',
+        $darkTheme,
+        (
+            addHover: true,
+            addBefore: true,
+            useGradient: true,
+            oneLvl: true,
+        )
+    );
 }
 
 .l {
-    &.bg {
-        @include generateBgClasses($lightTheme, true, true, true);
-    }
+    @include classesGenerator(
+        'bg',
+        'background-color',
+        $lightTheme,
+        (
+            addHover: true,
+            addBefore: true,
+            useGradient: true,
+            oneLvl: true,
+        )
+    );
 }

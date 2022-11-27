@@ -2,7 +2,7 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {Provider} from 'react-redux';
 import {store} from './_examples/store';
-import App from './App';
+import Router from './Router';
 import reportWebVitals from './reportWebVitals';
 import {LS_LANG_KEY, LS_THEME_KEY} from './constants/localStorage';
 import {DEFAULT_LANG, DEFAULT_THEME} from './constants/default';
@@ -16,7 +16,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router />
     </Provider>
   </React.StrictMode>
 );
