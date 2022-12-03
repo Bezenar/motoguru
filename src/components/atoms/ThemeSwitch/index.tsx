@@ -1,18 +1,20 @@
-import {useCallback } from 'react';
+import {useCallback, useContext, useState} from 'react';
+import {AppContext} from '../../../App';
 import {LS_THEME_KEY} from '../../../constants/localStorage';
-import cn from '../../../helpers/cn';
-import styles from './Switch.module.scss';
+import cn from '../../../_utils/classnames/cn';
+import styles from './ThemeSwitch.module.scss';
 
-export interface I_Switch {
-    checked: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+export interface I_ThemeSwitch {}
 
-const Switch: React.FC<Readonly<I_Switch>> = ({checked, onChange}) => {
+const ThemeSwitch: React.FC<Readonly<I_ThemeSwitch>> = () => {
+    const {theme, onChangeTheme} = useContext(AppContext);
+    const [checked, setChecked] = useState<boolean>(theme === 'd');
+
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        localStorage.setItem(LS_THEME_KEY, e.target.checked ? 'd': 'l');
-        onChange(e);
-    }, [onChange]);
+        localStorage.setItem(LS_THEME_KEY, e.target.checked ? 'd' : 'l');
+        setChecked(e.target.checked);
+        onChangeTheme();
+    }, [onChangeTheme, setChecked]);
     
     return(
         <label
@@ -44,4 +46,4 @@ const Switch: React.FC<Readonly<I_Switch>> = ({checked, onChange}) => {
     );
 }
 
-export default Switch;
+export default ThemeSwitch;

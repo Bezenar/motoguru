@@ -1,16 +1,23 @@
 import {Outlet} from 'react-router-dom';
-import cn from '../../helpers/cn';
-import routes from '../../routes';
-
-import InputField from '../atoms/InputField';
+import cn from '../../_utils/classnames/cn';
 import NavBtn from '../atoms/NavBtn';
+import useRoutes from '../../hooks/useRoutes';
+import StarsRate from '../atoms/StarsRate';
+import {useContext} from 'react';
+import {AppContext} from '../../App';
+import LangDropdown from '../atoms/LangDropdown';
+import Text from '../atoms/Text';
 
 interface I_Page {}
 
 const Page: React.FC<Readonly<I_Page>> = ({}) => {
+    const appContext = useContext(AppContext);
+    const routes = useRoutes([appContext?.lang]);
+
+
     return(
         <div className={cn(['pageBg'])}>
-            <h1>
+            <h1 className='flex'>
                 {routes.map((route, i) => (
                     <NavBtn key={route.path} route={route} last={i + 1 === routes.length} />
                 ))}
@@ -19,17 +26,13 @@ const Page: React.FC<Readonly<I_Page>> = ({}) => {
             <h1>footer</h1>
 
             <div className="pa-10">
-                <InputField
-                    value={''}
-                    validators={[
-                        (val) => val.includes('a'),
-                        (val) => val.length > 5
-                    ]}
-                    errors={['a is included', 'length is more than 5']}
-                    placeholder={'place'}
-                    required
-                    onChange={(e) => console.log(new Date(Date.now()).getSeconds(), e.target.value)}
-                />
+                <div className="wid-25">
+                    <Text
+                        text={'asd'}
+                        type={'line'}
+                        textSize={'heading-md'}
+                    />
+                </div>
             </div>
         </div>
     );

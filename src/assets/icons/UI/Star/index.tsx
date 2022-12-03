@@ -1,7 +1,7 @@
 import {UI_ICON_DARK, UI_ICON_LIGHT} from '../../../constants';
 import {T_IconStar} from '../../../../types/icon';
 import {LS_THEME_KEY} from '../../../../constants/localStorage';
-import {useMemo} from 'react';
+import {useEffect, useMemo} from 'react';
 
 const Star: React.FC<Readonly<T_IconStar>> = ({state}) => {
     const color = useMemo(() => {

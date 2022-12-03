@@ -1,4 +1,4 @@
-import cn from '../../../helpers/cn';
+import cn from '../../../_utils/classnames/cn';
 import styles from './SocialLink.module.scss';
 
 export interface I_SocialLink {

@@ -1,6 +1,6 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import Counter, {I_Counter} from '.';
-import ThemeSwitcher from '../../../_utils/storybook/ThemeSwitcher';
+import ThemeSwitcher from '../../../_utils/storybook/StoryThemeSwitcher';
 
 export default {
     title: 'atoms/Counter',

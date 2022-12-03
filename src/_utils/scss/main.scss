@@ -47,6 +47,10 @@ $errorColor: map-get($darkTheme, 'primary');
     color: $errorColor;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .d {
     &.pageBg {
         background-color: map-get($commonColors, 'black');

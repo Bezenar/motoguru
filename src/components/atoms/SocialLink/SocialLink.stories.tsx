@@ -1,7 +1,7 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import SocialLink, {I_SocialLink} from '.';
 import FBIcon from '../../../assets/icons/social/Facebook';
-import ThemeSwitcher from '../../../_utils/storybook/ThemeSwitcher';
+import ThemeSwitcher from '../../../_utils/storybook/StoryThemeSwitcher';
 
 export default {
     title: 'Atoms/SocialLink',

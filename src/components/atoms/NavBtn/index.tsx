@@ -1,6 +1,6 @@
 import {NavLink} from 'react-router-dom';
 import { LS_THEME_KEY } from '../../../constants/localStorage';
-import cn from '../../../helpers/cn';
+import cn from '../../../_utils/classnames/cn';
 import N_Common from '../../../types/common';
 import styles from './NavBtn.module.scss';
 

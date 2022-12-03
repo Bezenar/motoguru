@@ -1,6 +1,6 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import Button, {I_Button} from '.';
-import ThemeSwitcher from '../../../_utils/storybook/ThemeSwitcher';
+import ThemeSwitcher from '../../../_utils/storybook/StoryThemeSwitcher';
 
 export default {
     title: 'Atoms/Button',

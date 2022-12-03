@@ -1,6 +1,6 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import Star from '.';
-import StoryThemeSwitcher from '../../../../_utils/storybook/ThemeSwitcher';
+import StoryThemeSwitcher from '../../../../_utils/storybook/StoryThemeSwitcher';
 
 export default {
     title: 'Icons/UI/Star',

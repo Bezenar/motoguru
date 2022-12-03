@@ -13,7 +13,7 @@
     @include classesGenerator(
         'bg',
         'background-color',
-        $darkTheme,
+        map-merge($darkTheme, ('lang-dd': rgba(255, 255, 255, 0.2))),
         (
             addHover: true,
             addBefore: true,
@@ -27,7 +27,7 @@
     @include classesGenerator(
         'bg',
         'background-color',
-        $lightTheme,
+        map-merge($lightTheme, ('lang-dd': rgba(0, 0, 0, 0.2))),
         (
             addHover: true,
             addBefore: true,

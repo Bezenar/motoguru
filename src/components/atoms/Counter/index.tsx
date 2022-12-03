@@ -1,5 +1,5 @@
 import styles from './Counter.module.scss';
-import cn from '../../../helpers/cn';
+import cn from '../../../_utils/classnames/cn';
 
 export interface I_Counter {
     value: number;

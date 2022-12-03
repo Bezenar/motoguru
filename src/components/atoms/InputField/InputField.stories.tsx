@@ -1,7 +1,7 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import InputField, {I_InputField} from '.';
-import ThemeSwitcher from '../../../_utils/storybook/ThemeSwitcher';
+import ThemeSwitcher from '../../../_utils/storybook/StoryThemeSwitcher';
 
 export default {
     title: 'Atoms/InputField',

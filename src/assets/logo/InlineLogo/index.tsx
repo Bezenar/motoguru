@@ -1,6 +1,6 @@
 import {INLINE_LOGO_DARK, INLINE_LOGO_LIGHT} from '../../constants';
 import {useMemo} from 'react';
-import { LS_THEME_KEY } from '../../../constants/localStorage';
+import {LS_THEME_KEY} from '../../../constants/localStorage';
 
 const InlineLogo: React.FC<{}> = ({}) => {
     

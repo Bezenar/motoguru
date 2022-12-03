@@ -2,23 +2,24 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {Provider} from 'react-redux';
 import {store} from './_examples/store';
-import Router from './Router';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {LS_LANG_KEY, LS_THEME_KEY} from './constants/localStorage';
-import {DEFAULT_LANG, DEFAULT_THEME} from './constants/default';
 
-if(!localStorage.getItem(LS_THEME_KEY)) localStorage.setItem(LS_THEME_KEY, DEFAULT_THEME);
-if(!localStorage.getItem(LS_LANG_KEY)) localStorage.setItem(LS_LANG_KEY, DEFAULT_LANG);
+if(!localStorage.getItem(LS_THEME_KEY)) {
+    localStorage.setItem(LS_THEME_KEY, process.env.REACT_APP_DEFAULT_THEME as string);
+}
+if(!localStorage.getItem(LS_LANG_KEY)) localStorage.setItem(LS_LANG_KEY, process.env.REACT_APP_DEFAULT_LANG as string);
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router />
-    </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

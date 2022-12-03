@@ -1,6 +1,6 @@
 import {useCallback, useMemo, useRef, useState} from 'react';
-import { LS_THEME_KEY } from '../../../constants/localStorage';
-import cn from '../../../helpers/cn';
+import {LS_THEME_KEY} from '../../../constants/localStorage';
+import cn from '../../../_utils/classnames/cn';
 import styles from './InputField.module.scss'
 
 export interface I_InputField {
