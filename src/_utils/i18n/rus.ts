@@ -6,6 +6,12 @@ const rus: T_Translations = {
         categories: 'ru - CATEGORIES',
         feedbacks: 'ru - FEEDBACKS',
         bikes: 'ru - BIKES',
+    },
+    worksHead: {
+        category: 'rus - category',
+        date: 'rus - date',
+        time: 'rus - time',
+        place: 'rus - place',
     }
 }
 

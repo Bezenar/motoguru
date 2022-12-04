@@ -2,11 +2,10 @@ import {Outlet} from 'react-router-dom';
 import cn from '../../_utils/classnames/cn';
 import NavBtn from '../atoms/NavBtn';
 import useRoutes from '../../hooks/useRoutes';
-import StarsRate from '../atoms/StarsRate';
 import {useContext} from 'react';
 import {AppContext} from '../../App';
-import LangDropdown from '../atoms/LangDropdown';
-import Text from '../atoms/Text';
+import WorkRow from '../atoms/ExerciseRow';
+import {EXERCISES_HEAD} from '../atoms/ExerciseRow/constants';
 
 interface I_Page {}
 
@@ -25,14 +24,8 @@ const Page: React.FC<Readonly<I_Page>> = ({}) => {
                 <Outlet />
             <h1>footer</h1>
 
-            <div className="pa-10">
-                <div className="wid-25">
-                    <Text
-                        text={'asd'}
-                        type={'line'}
-                        textSize={'heading-md'}
-                    />
-                </div>
+            <div className="pt-10">
+                
             </div>
         </div>
     );

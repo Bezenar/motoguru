@@ -19,8 +19,8 @@ const Text: React.FC<Readonly<I_Text>> = ({type, text, textSize = 'sm', textColo
             class: cn([
                 `text--${textSize}`,
                 {[`text--${textColor}`]: !!textColor},
-                {'text--black': theme === 'd' && !textColor},
-                {'text--white': theme === 'l' && !textColor}
+                {'text--black': theme === 'l' && !textColor},
+                {'text--white': theme === 'd' && !textColor}
             ])
         },
         [text]

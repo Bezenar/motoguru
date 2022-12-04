@@ -6,6 +6,12 @@ const lv: T_Translations = {
         categories: 'lv - CATEGORIES',
         feedbacks: 'lv - FEEDBACKS',
         bikes: 'lv - BIKES',
+    },
+    worksHead: {
+        category: 'lv - category',
+        date: 'lv - date',
+        time: 'lv - time',
+        place: 'lv - place',
     }
 }
 

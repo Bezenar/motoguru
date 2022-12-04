@@ -1,3 +1,5 @@
+import { T_Translations } from "../_utils/i18n/types";
+
 namespace N_Common {
     export type T_AppContext = {
         theme: 'd' | 'l';

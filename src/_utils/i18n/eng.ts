@@ -6,6 +6,12 @@ const eng: T_Translations = {
         categories: 'CATEGORIES',
         feedbacks: 'FEEDBACKS',
         bikes: 'BIKES',
+    },
+    worksHead: {
+        category: 'category',
+        date: 'date',
+        time: 'time',
+        place: 'place',
     }
 }
 

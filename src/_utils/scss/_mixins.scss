@@ -8,13 +8,9 @@
         addBefore: false,
         addAfter: false,
         addFocus: false,
-        useGradient: false
     )
 ) {
     #{if(& and map-get($options, 'oneLvl') == true,'&.','.') + $classPrefix} { /// scss-lint:disable
-        @if(map-get($options, 'useGradient') != true) {
-            $colorArr: map-remove($colorArr, 'gradient');
-        }
         @each $colorKey, $colorValue in $colorArr {
             &--#{$colorKey} {
                 #{$property}: $colorValue;
