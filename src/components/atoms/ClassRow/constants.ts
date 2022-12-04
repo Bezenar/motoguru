@@ -1,7 +1,7 @@
-import {I_ExerciseRow} from '.';
+import {I_ClassRow} from '.';
 import tr from '../../../_utils/i18n';
 
-export const EXERCISES_HEAD: I_ExerciseRow['item'] = {
+export const CLASS_HEAD: I_ClassRow['item'] = {
     category: tr('category', 'worksHead'),
     date: tr('date', 'worksHead'),
     time: tr('time', 'worksHead'),

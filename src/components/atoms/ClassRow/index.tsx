@@ -1,8 +1,8 @@
-import styles from './ExerciseRow.module.scss';
+import styles from './ClassRow.module.scss';
 import cn from "../../../_utils/classnames/cn";
 import Text from '../Text';
 
-export interface I_ExerciseRow {
+export interface I_ClassRow {
     head?: boolean;
     item: {
         category: string;
@@ -12,7 +12,7 @@ export interface I_ExerciseRow {
     };
 }
 
-const ExerciseRow: React.FC<Readonly<I_ExerciseRow>> = ({head = false, item}) => {
+const ClassRow: React.FC<Readonly<I_ClassRow>> = ({head = false, item}) => {
     return(
         <div
             className={cn([
@@ -38,4 +38,4 @@ const ExerciseRow: React.FC<Readonly<I_ExerciseRow>> = ({head = false, item}) =>
     );
 }
 
-export default ExerciseRow;
+export default ClassRow;

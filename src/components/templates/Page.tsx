@@ -4,8 +4,8 @@ import NavBtn from '../atoms/NavBtn';
 import useRoutes from '../../hooks/useRoutes';
 import {useContext} from 'react';
 import {AppContext} from '../../App';
-import WorkRow from '../atoms/ExerciseRow';
-import {EXERCISES_HEAD} from '../atoms/ExerciseRow/constants';
+import List from '../atoms/List';
+import Textarea from '../atoms/TextArea';
 
 interface I_Page {}
 
@@ -24,8 +24,12 @@ const Page: React.FC<Readonly<I_Page>> = ({}) => {
                 <Outlet />
             <h1>footer</h1>
 
-            <div className="pt-10">
-                
+            <div className='ma-10' style={{width: 664}}>
+                <Textarea
+                    value={''}
+                    placeholder={'place'}
+                    onChange={(val) => console.log(val)}
+                />
             </div>
         </div>
     );

@@ -1,0 +1,11 @@
+.textarea {
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    resize: none;
+    min-height: 86px;
+    max-height: 200px;
+}

@@ -1,11 +1,11 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
-import ExerciseRow, {I_ExerciseRow} from '.';
+import ClassRow, {I_ClassRow} from '.';
 import ThemeSwitcher from '../../../_utils/storybook/StoryThemeSwitcher';
-import {EXERCISES_HEAD} from './constants'
+import {CLASS_HEAD} from './constants'
 
 export default {
-    title: 'atoms/ExerciseRow',
-    component: ExerciseRow,
+    title: 'atoms/ClassRow',
+    component: ClassRow,
     argTypes: {
         head: {control: 'boolean', description: 'Set head styles'},
         item: {control: 'object'},
@@ -15,14 +15,14 @@ export default {
             <ThemeSwitcher Story={Story} applyBg/>
         )
     ]
-} as ComponentMeta<typeof ExerciseRow>;
+} as ComponentMeta<typeof ClassRow>;
 
-const Template: ComponentStory<typeof ExerciseRow> = (args) => <ExerciseRow {...args} />;
+const Template: ComponentStory<typeof ClassRow> = (args) => <ClassRow {...args} />;
 
 export const Default = Template.bind({});
-const ARGS: Partial<I_ExerciseRow> = {
+const ARGS: Partial<I_ClassRow> = {
     head: false,
-    item: EXERCISES_HEAD,
+    item: CLASS_HEAD,
 };
 
 Default.args = {...ARGS};
