@@ -13,9 +13,9 @@ export default function tr(key: N_Utility.NestedKeyOf<T_Translations>, section: 
         lv,
         rus,
     }
-
+    console.log(process.env.REACT_APP_DEFAULT_LANG);
     const active: N_Common.T_LangShort =
-        localStorage.getItem(LS_LANG_KEY) as N_Common.T_LangShort || process.env.REACT_APP_DEFAULT_LANG || 'eng';
+        localStorage.getItem(LS_LANG_KEY) as N_Common.T_LangShort || process.env.REACT_APP_DEFAULT_LANG;
     
         //@ts-ignore
     return languages[active][section][key];
