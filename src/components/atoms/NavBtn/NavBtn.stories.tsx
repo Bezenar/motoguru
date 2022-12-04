@@ -15,10 +15,6 @@ export default {
                 'name - text which displayed in browser <br>'
             ,
         },
-        last: {
-            control: 'boolean',
-            description: 'Set/remove margin-right for last element'
-        }
     },
     decorators: [
         (Story) => (
@@ -40,7 +36,6 @@ const ARGS: Partial<I_NavBtn> = {
         element: <></>,
         name: 'Homepage'
     },
-    last: false,
 };
 
 Default.args = {...ARGS};

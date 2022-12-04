@@ -3,11 +3,11 @@ import {SOCIAL_ICON_COLOR} from '../../../constants';
 const InstaIcon: React.FC<{}> = ({}) => {
     return(
         <svg id="Instagram" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <g id="Rectangle_5" data-name="Rectangle 5" fill="none" stroke={SOCIAL_ICON_COLOR} stroke-linejoin="round" stroke-width="2">
+            <g id="Rectangle_5" data-name="Rectangle 5" fill="none" stroke={SOCIAL_ICON_COLOR} strokeLinejoin="round" strokeWidth="2">
                 <rect width="24" height="24" rx="7" stroke="none"/>
                 <rect x="1" y="1" width="22" height="22" rx="6" fill="none"/>
             </g>
-            <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(6 6)" fill="none" stroke={SOCIAL_ICON_COLOR} stroke-width="2">
+            <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(6 6)" fill="none" stroke={SOCIAL_ICON_COLOR} strokeWidth="2">
                 <circle cx="6" cy="6" r="6" stroke="none"/>
                 <circle cx="6" cy="6" r="5" fill="none"/>
             </g>

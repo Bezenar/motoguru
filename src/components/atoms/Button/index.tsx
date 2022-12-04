@@ -17,8 +17,7 @@ const Button: React.FC<Readonly<I_Button>> = ({innerText, outlined = false, onCl
             className={cn([
                 styles.btn,
                 'text--sm',
-                {'text': !outlined},
-                {'bg--primary bg--secondary--hover text--white': !outlined},
+                {'text bg--primary bg--secondary--hover text--white': !outlined},
                 {[styles.bordered]: outlined},
                 {'text--white border--white bg--grey--hover': outlined && localStorage.getItem(LS_THEME_KEY) === 'd'},
                 {'text--black border--black bg--white--hover': outlined && localStorage.getItem(LS_THEME_KEY) === 'l'},

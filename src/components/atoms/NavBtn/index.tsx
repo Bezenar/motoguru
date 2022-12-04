@@ -6,10 +6,9 @@ import styles from './NavBtn.module.scss';
 
 export interface I_NavBtn {
     route: N_Common.T_Route,
-    last: boolean;
 }
 
-const NavBtn: React.FC<Readonly<I_NavBtn>> = ({route, last}) => {
+const NavBtn: React.FC<Readonly<I_NavBtn>> = ({route}) => {
     return(
         <NavLink to={route.path}>
             {
@@ -20,7 +19,6 @@ const NavBtn: React.FC<Readonly<I_NavBtn>> = ({route, last}) => {
                             {'text--white': !isActive && localStorage.getItem(LS_THEME_KEY) === 'd'},
                             {'text--black': !isActive && localStorage.getItem(LS_THEME_KEY) === 'l'},
                             {'text--primary text--secondary--hover': isActive},
-                            {[styles.last]: last},
                             {[styles.active]: isActive},
                             styles.navBtn,
                         ])}

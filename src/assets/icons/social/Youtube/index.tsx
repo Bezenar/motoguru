@@ -4,7 +4,7 @@ const YTIcon: React.FC<{}> = ({}) => {
     return(
         <svg id="Youtube" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path id="Path_8" data-name="Path 8" d="M0,0H24V24H0Z" fill="none"/>
-            <g id="Rectangle_6" data-name="Rectangle 6" transform="translate(0 3)" fill="none" stroke={SOCIAL_ICON_COLOR} stroke-linejoin="round" stroke-width="2">
+            <g id="Rectangle_6" data-name="Rectangle 6" transform="translate(0 3)" fill="none" stroke={SOCIAL_ICON_COLOR} strokeLinejoin="round" strokeWidth="2">
                 <rect width="24" height="18" rx="5" stroke="none"/>
                 <rect x="1" y="1" width="22" height="16" rx="4" fill="none"/>
             </g>
