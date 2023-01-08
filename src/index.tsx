@@ -8,6 +8,12 @@ import {LS_THEME_KEY} from './constants/localStorage';
 import './i18n';
 import './_utils/themes';
 
+/**
+ * TODO
+ * Fix inline logo themes color
+ * Fix UI icons themes color
+ */
+
 if(!localStorage.getItem(LS_THEME_KEY)) {
     localStorage.setItem(LS_THEME_KEY, process.env.REACT_APP_DEFAULT_THEME as string);
     window.themes.switchTheme(true);

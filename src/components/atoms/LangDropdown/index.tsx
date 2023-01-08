@@ -30,7 +30,7 @@ const LangDropdown: React.FC<I_LangDropdown> = () => {
         <div className={styles.wrapper}>
             <div className="flex jc-sb ai-center pointer" onClick={handleOpen}>
                 {selected?.value}
-                <span className={cn(['border--primary', styles.arrow, {[styles.active]: isVisible}])}></span>
+                <span className={cn([styles.arrow, {[styles.active]: isVisible}])}></span>
             </div>
             {isVisible ? (
                 <ul className={cn([styles.list, 'pointer flex dir-col ai-center bg-counter-main-transparent'])}>

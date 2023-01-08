@@ -1,7 +1,6 @@
-import cn from 'classnames';
 import {Outlet} from 'react-router-dom';
-import Button from '../atoms/Button';
 import Header from '../organisms/Header';
+import Footer from '../organisms/Footer';
 
 interface I_Page {}
 
@@ -11,7 +10,7 @@ const Page: React.FC<Readonly<I_Page>> = ({}) => {
         <div className="bg-main">
             <Header />
             <Outlet />
-            <h1>footer</h1>
+            <Footer />
         </div>
     );
 }

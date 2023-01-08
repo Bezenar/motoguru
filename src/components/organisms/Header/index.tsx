@@ -37,7 +37,10 @@ const Header: React.FC<Readonly<I_Header>> = ({}) => {
                     <YTIcon />
                 </SocialLink>
                 
-                <a href="#" className={cn([btnStyles.btn, 'text--sm bg-primary bg-secondary--hover text-white'])}>
+                <a
+                    href={`tel:${process.env.REACT_APP_PHONE}`}
+                    className={cn([btnStyles.btn, 'text--sm bg-primary bg-secondary--hover text-white'])}
+                >
                     {process.env.REACT_APP_PHONE}
                 </a>
 

@@ -13,22 +13,22 @@ export default function useRoutes(dependency: Array<any> = []) {
             {
                 path: '/',
                 element: <HomePage />,
-                name: t('navigation.home'),
+                name: t('header.navigation.home'),
             },
             {
                 path: '/categories',
                 element: <Categories />,
-                name: t('navigation.categories'),
+                name: t('header.navigation.categories'),
             },
             {
                 path: '/feedbacks',
                 element: <FeedBacks />,
-                name: t('navigation.feedbacks'),
+                name: t('header.navigation.feedbacks'),
             },
             {
                 path: '/bikes',
                 element: <Bikes />,
-                name: t('navigation.bikes'),
+                name: t('header.navigation.bikes'),
             },
         ];
     }, [t, ... dependency]);
