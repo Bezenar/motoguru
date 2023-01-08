@@ -4,7 +4,7 @@ import {LS_THEME_KEY} from '../../../../constants/localStorage';
 
 const Location: React.FC<{}> = ({}) => {
     const color = useMemo(() => {
-        return localStorage.getItem(LS_THEME_KEY) === 'd' ? UI_ICON_DARK : UI_ICON_LIGHT
+        return localStorage.getItem(LS_THEME_KEY) === 'dark' ? UI_ICON_DARK : UI_ICON_LIGHT
     }, [localStorage.getItem(LS_THEME_KEY)]);
 
     return(

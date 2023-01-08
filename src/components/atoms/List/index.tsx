@@ -1,5 +1,5 @@
 import {Fragment} from 'react';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import Text from '../Text';
 import styles from './List.module.scss';
 

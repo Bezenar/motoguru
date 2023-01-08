@@ -1,6 +1,5 @@
 import {NavLink} from 'react-router-dom';
-import { LS_THEME_KEY } from '../../../constants/localStorage';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import N_Common from '../../../types/common';
 import styles from './NavBtn.module.scss';
 
@@ -15,12 +14,9 @@ const NavBtn: React.FC<Readonly<I_NavBtn>> = ({route}) => {
                 ({ isActive }) => (
                     <span
                         className={cn([
-                            'text--sm flex ai-center jc-center',
-                            {'text--white': !isActive && localStorage.getItem(LS_THEME_KEY) === 'd'},
-                            {'text--black': !isActive && localStorage.getItem(LS_THEME_KEY) === 'l'},
-                            {'text--primary text--secondary--hover': isActive},
-                            {[styles.active]: isActive},
                             styles.navBtn,
+                            'text--sm flex ai-center jc-center',
+                            isActive ? styles.active : styles.nonActive,
                         ])}
                     >
                         {route.name}

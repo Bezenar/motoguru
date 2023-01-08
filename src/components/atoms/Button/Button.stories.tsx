@@ -22,7 +22,6 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 const ARGS: Partial<I_Button> = {
     innerText: 'Click me',
-    outlined: false,
 };
 
 Default.args = {...ARGS};

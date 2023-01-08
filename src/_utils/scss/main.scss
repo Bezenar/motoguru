@@ -1,6 +1,5 @@
 @import './_reset.scss';
 @import './_colors.scss';
-@import './mixins';
 @import './_widths.scss';
 @import './_flex.scss';
 @import './_margins.scss';
@@ -10,10 +9,8 @@
 @import './_textColors.scss';
 @import './borders';
 
-
 $containerMaxWidth: 1200px;
 $containerWidth: 85%;
-$errorColor: map-get($darkTheme, 'primary');
 
 .container {
     width: $containerWidth;
@@ -39,26 +36,6 @@ $errorColor: map-get($darkTheme, 'primary');
     }
 }
 
-.border--error {
-    border-color: $errorColor;
-}
-
-.error {
-    color: $errorColor;
-}
-
 .pointer {
     cursor: pointer;
-}
-
-.d {
-    &.pageBg {
-        background-color: map-get($commonColors, 'black');
-    }
-}
-
-.l {
-    &.pageBg {
-        background-color: map-get($commonColors, 'grey');
-    }
 }

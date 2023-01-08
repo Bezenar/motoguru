@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { LS_THEME_KEY } from '../../../constants/localStorage';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import styles from './Textarea.module.scss';
 
 export interface I_Textarea {
@@ -53,10 +53,10 @@ const Textarea: React.FC<Readonly<I_Textarea>> = ({value, placeholder, debounceT
                 styles.textarea,
                 'text--sm px-4 py-2',
                 {'border--input': !isFocused},
-                {'text--white': localStorage.getItem(LS_THEME_KEY) === 'd'},
-                {'text--black': localStorage.getItem(LS_THEME_KEY) === 'l'},
-                {'border--white text--white': isFocused && localStorage.getItem(LS_THEME_KEY) === 'd'},
-                {'border--black text--black': isFocused && localStorage.getItem(LS_THEME_KEY) === 'l'},
+                {'text--white': localStorage.getItem(LS_THEME_KEY) === 'dark'},
+                {'text--black': localStorage.getItem(LS_THEME_KEY) === 'light'},
+                {'border--white text--white': isFocused && localStorage.getItem(LS_THEME_KEY) === 'dark'},
+                {'border--black text--black': isFocused && localStorage.getItem(LS_THEME_KEY) === 'light'},
             ])}
             onChange={handleChange}
             onFocus={handleFocus}

@@ -1,36 +1,17 @@
-@include classesGenerator(
-    'border',
-    'border-color',
-    $commonColors,
-    (
-        'addFocus': true
-    )
-);
+$borderColors: 'input-border';
 
-.d {
-    @include classesGenerator(
-        'border',
-        'border-color',
-        (
-            'input': rgba(255, 255, 255, 0.3),
-            'primary': map-get($darkTheme, 'primary'),
-        ),
-        (
-            'oneLvl': true,
-        )
-    );
+.border {
+    @each $color in $bgColors {
+        &--#{$color} {
+            border-color: var(--#{$color});
+        }
+        &--hover {
+            &--#{$color} {
+                &:hover {
+                    border-color: var(--#{$color});
+                }
+            }
+        }
+    } 
 }
 
-.l {
-    @include classesGenerator(
-        'border',
-        'border-color',
-        (
-            'input': rgba(0, 0, 0, 0.3),
-            'primary': map-get($lightTheme, 'primary'),
-        ),
-        (
-            'oneLvl': true,
-        )
-    );
-}

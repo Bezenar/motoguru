@@ -1,61 +1,27 @@
-@include classesGenerator(
-    'bg',
-    'background-color',
-    $commonColors,
-    (
-        addHover: true,
-        oneLvl: true,
-        useGradient: true
-    )
-);
+$bgColors: 'bg-main', 'bg-main-transparent', 'bg-counter-main', 'bg-counter-main-transparent';
+$bgColors2: 'primary', 'secondary';
 
-.d {
-    &.bg--gradient {
-        background: linear-gradient(
-            180deg,
-            #0B0B0B 0%,
-            #080808 5.21%,
-            rgba(11, 11, 11, 0.6) 17.19%,
-            rgba(11, 11, 11, 0.6) 82.81%,
-            #0B0B0B 93.75%,
-            #0B0B0B 100%
-        );
+@each $color in $bgColors {
+    .#{$color} {
+        background-color: var(--#{$color});
+        &--hover {
+            &:hover {
+                background-color: var(--#{$color});
+            }
+        }
     }
-    @include classesGenerator(
-        'bg',
-        'background-color',
-        map-merge($darkTheme, ('lang-dd': rgba(255, 255, 255, 0.2))),
-        (
-            addHover: true,
-            addBefore: true,
-            useGradient: true,
-            oneLvl: true,
-        )
-    );
 }
 
-.l {
-    &.bg--gradient {
-        background: linear-gradient(
-            180deg,
-            #CCCCCC 0%,
-            #CCCCCC 5.21%,
-            rgba(204, 204, 204, 0.4) 17.19%,
-            rgba(204, 204, 204, 0.4) 82.81%,
-            #CCCCCC 93.75%,
-            #CCCCCC 100%
-        );
-    };
-
-    @include classesGenerator(
-        'bg',
-        'background-color',
-        map-merge($lightTheme, ('lang-dd': rgba(0, 0, 0, 0.2))),
-        (
-            addHover: true,
-            addBefore: true,
-            useGradient: true,
-            oneLvl: true,
-        )
-    );
+.bg {
+    @each $color in $bgColors2 {
+        &-#{$color} {
+            background-color: var(--#{$color});
+            &--hover {
+                &:hover {
+                    background-color: var(--#{$color});
+                }
+            }
+        }
+    }
+    
 }

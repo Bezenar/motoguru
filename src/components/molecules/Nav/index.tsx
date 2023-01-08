@@ -1,5 +1,5 @@
 import N_Common from '../../../types/common';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import NavBtn from '../../atoms/NavBtn';
 import styles from './Nav.module.scss';
 

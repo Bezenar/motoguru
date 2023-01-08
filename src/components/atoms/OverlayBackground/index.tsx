@@ -1,13 +1,14 @@
 import {useEffect, useRef, useState} from 'react';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import styles from './OverlayBackground.module.scss';
 
 export interface I_OverlayBackground {
     imgSrc: string;
+    ratioBy?: 'width' | 'height';
     children: React.ReactElement;
 }
 
-const OverlayBackground: React.FC<Readonly<I_OverlayBackground>> = ({imgSrc, children}) => {
+const OverlayBackground: React.FC<Readonly<I_OverlayBackground>> = ({imgSrc, ratioBy = 'width', children}) => {
     const [imageYOffset, setImageYOffset] = useState<number>(0);
     const image = useRef<HTMLImageElement>(null);
 
@@ -18,16 +19,16 @@ const OverlayBackground: React.FC<Readonly<I_OverlayBackground>> = ({imgSrc, chi
                 setImageYOffset((height- 633) / 2);
             }
         }
-    }, [image]);
+    }, [image.current]);
 
     return(
         <div className={cn([styles.wrapper])}>
-            <div className={cn([styles.overlay])}>
-                <img ref={image} src={imgSrc} alt="banner" style={{marginTop: -1 * imageYOffset}} />
-            </div>
-            
             <div className={cn(['flex ai-center jc-center bg--gradient h--full wid-100'])}>
                 {children}
+            </div>
+            <div className={styles.overlay}></div>
+            <div className={styles.imageWrapper}>
+                <img ref={image} src={imgSrc} alt="banner" style={{marginTop: -1 * imageYOffset}} />
             </div>
         </div>
     );

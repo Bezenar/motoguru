@@ -1,5 +1,6 @@
+import cn from 'classnames';
 import {Outlet} from 'react-router-dom';
-import cn from '../../_utils/classnames/cn';
+import Button from '../atoms/Button';
 import Header from '../organisms/Header';
 
 interface I_Page {}
@@ -7,9 +8,9 @@ interface I_Page {}
 const Page: React.FC<Readonly<I_Page>> = ({}) => {
 
     return(
-        <div className={cn(['pageBg'])}>
+        <div className="bg-main">
             <Header />
-                <Outlet />
+            <Outlet />
             <h1>footer</h1>
         </div>
     );

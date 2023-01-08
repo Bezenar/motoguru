@@ -1,6 +1,4 @@
-import {useContext} from 'react';
 import {NavLink} from 'react-router-dom';
-import {AppContext} from '../../../App';
 import FBIcon from '../../../assets/icons/social/Facebook';
 import InstaIcon from '../../../assets/icons/social/Instagram';
 import YTIcon from '../../../assets/icons/social/Youtube';
@@ -10,14 +8,13 @@ import LangDropdown from '../../atoms/LangDropdown';
 import SocialLink from '../../atoms/SocialLink';
 import ThemeSwitch from '../../atoms/ThemeSwitch';
 import Nav from '../../molecules/Nav';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import btnStyles from '../../atoms/Button/Button.module.scss';
 
 interface I_Header {}
 
 const Header: React.FC<Readonly<I_Header>> = ({}) => {
-    const {lang} = useContext(AppContext);
-    const routes = useRoutes([lang]);
+    const routes = useRoutes();
 
     return(
         <div className="container">
@@ -40,7 +37,7 @@ const Header: React.FC<Readonly<I_Header>> = ({}) => {
                     <YTIcon />
                 </SocialLink>
                 
-                <a href="#" className={cn([btnStyles.btn, 'text--sm bg--primary bg--secondary--hover text--white'])}>
+                <a href="#" className={cn([btnStyles.btn, 'text--sm bg-primary bg-secondary--hover text-white'])}>
                     {process.env.REACT_APP_PHONE}
                 </a>
 

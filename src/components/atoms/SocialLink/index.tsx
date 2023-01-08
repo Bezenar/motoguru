@@ -1,4 +1,4 @@
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import styles from './SocialLink.module.scss';
 
 export interface I_SocialLink {
@@ -11,8 +11,6 @@ const SocialLink: React.FC<Readonly<I_SocialLink>> = ({href, children}) => {
         <div
             className={cn([
                 styles.wrapper,
-                'bg--primary--before',
-                'bg--secondary--hover--before'
             ])}
         >
             <a href={href} target="_blank">

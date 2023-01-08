@@ -1,5 +1,5 @@
 import styles from './Counter.module.scss';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 
 export interface I_Counter {
     value: number;
@@ -7,15 +7,9 @@ export interface I_Counter {
 
 const Counter: React.FC<Readonly<I_Counter>> = ({value}) => {
     return(
-        <div
-            className={cn([
-                styles.wrapper,
-                'bg--primary--before',
-                'bg--secondary--before--hover'
-            ])}
-        >
+        <div className={cn([styles.wrapper])}>
             <span className={cn([
-                'flex jc-center ai-center wid-100 h--full text--heading-sm text--white',
+                'flex jc-center ai-center wid-100 h--full text--heading-sm text-white',
                 styles.childWrap
             ])}>
                 {value}

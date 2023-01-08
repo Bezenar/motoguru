@@ -1,49 +1,50 @@
-import {useContext, useCallback, useState, useMemo} from 'react';
-import {AppContext} from '../../../App';
+import {useCallback, useMemo, useState} from 'react';
 import {LANGUAGES} from '../../../constants/common';
 import {LS_LANG_KEY} from '../../../constants/localStorage';
-import cn from '../../../_utils/classnames/cn';
+import {useTranslation} from 'react-i18next';
+import N_Common from '../../../types/common';
+import cn from 'classnames';
 import styles from './LangDropdown.module.scss';
 
 export interface I_LangDropdown {}
 
 const LangDropdown: React.FC<I_LangDropdown> = () => {
-    const appProvider = useContext(AppContext);
     const [isVisible, setIsVisible] = useState(false);
+    const {i18n: {changeLanguage}} = useTranslation();
 
     const handleOpen = useCallback(() => {
         setIsVisible(prev => !prev);
     }, [setIsVisible]);
 
-    const handleSelect = useCallback((langShort: string) => {
+    const handleSelect = useCallback((langShort: N_Common.T_LangShort) => {
         setIsVisible(false);
         localStorage.setItem(LS_LANG_KEY, langShort);
-        appProvider?.onChangeLang();
-    }, [appProvider?.lang, setIsVisible]);
+        changeLanguage(langShort);
+    }, [setIsVisible, changeLanguage]);
 
-    const selectedValue = useMemo<React.ReactElement>(() => {
-        return LANGUAGES.find((item) => item.langShort === appProvider?.lang)!.value;
-    }, [appProvider?.lang]);
+    const selected = useMemo(() => {
+        return LANGUAGES.find(lang => lang.langShort === (localStorage.getItem(LS_LANG_KEY) ?? process.env.REACT_APP_DEFAULT_LANG))
+    }, [isVisible === false]);
 
     return(
         <div className={styles.wrapper}>
             <div className="flex jc-sb ai-center pointer" onClick={handleOpen}>
-                {selectedValue}
+                {selected?.value}
                 <span className={cn(['border--primary', styles.arrow, {[styles.active]: isVisible}])}></span>
             </div>
             {isVisible ? (
-                <ul className={cn([styles.list, 'pointer bg--lang-dd flex dir-col ai-center'])}>
+                <ul className={cn([styles.list, 'pointer flex dir-col ai-center bg-counter-main-transparent'])}>
                     {LANGUAGES.map((lang) => {
-                        return lang.langShort !== appProvider?.lang && (
+                        return lang.langShort !== selected?.langShort ? (
                             <li
                                 key={lang.id}
-                                className={cn(['bg--primary--hover flex ai-center jc-center wid-100'])}
+                                className={cn([styles.listItem, 'flex ai-center jc-center wid-100'])}
                                 onClick={() => handleSelect(lang.langShort)}
                             >
                                 {lang.value}
-                            </li>);
-                        }
-                    )}
+                            </li>
+                        ) : null;
+                    })}
                 </ul>
             ): null}
         </div>

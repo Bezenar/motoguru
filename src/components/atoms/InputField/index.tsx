@@ -1,6 +1,6 @@
 import {useCallback, useMemo, useRef, useState} from 'react';
 import {LS_THEME_KEY} from '../../../constants/localStorage';
-import cn from '../../../_utils/classnames/cn';
+import cn from 'classnames';
 import styles from './InputField.module.scss'
 
 export interface I_InputField {
@@ -62,8 +62,8 @@ const InputField: React.FC<Readonly<I_InputField>> = ({
                 className={cn([
                     styles.label,
                     {'border--input': !isFocused},
-                    {'border--white': isFocused && localStorage.getItem(LS_THEME_KEY) === 'd'},
-                    {'border--black': isFocused && localStorage.getItem(LS_THEME_KEY) === 'l'},
+                    {'border--white': isFocused && localStorage.getItem(LS_THEME_KEY) === 'dark'},
+                    {'border--black': isFocused && localStorage.getItem(LS_THEME_KEY) === 'light'},
                     {'border--error': innerErrors.length > 0}
                 ])}
                 htmlFor="input"
@@ -71,8 +71,8 @@ const InputField: React.FC<Readonly<I_InputField>> = ({
                 <input
                     className={cn([
                         'text--sm',
-                        {'text--white':localStorage.getItem(LS_THEME_KEY) === 'd'},
-                        {'text--black':localStorage.getItem(LS_THEME_KEY) === 'l'},
+                        {'text--white':localStorage.getItem(LS_THEME_KEY) === 'dark'},
+                        {'text--black':localStorage.getItem(LS_THEME_KEY) === 'light'},
                         styles.input
                     ])}
                     type="text"

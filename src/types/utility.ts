@@ -1,9 +1,9 @@
 namespace N_Utility {
-    export type NestedKeyOf<ObjectType extends object> = 
-        {[Key in keyof ObjectType]: ObjectType[Key] extends object 
-            ? NestedKeyOf<ObjectType[Key]>
-            : Key
-        }[keyof ObjectType];
+    export type NestedKeyOf<T extends object> = 
+        {[K in keyof T]: T[K] extends object 
+            ? NestedKeyOf<T[K]>
+            : K
+        }[keyof T];
 }
 
 export default N_Utility;

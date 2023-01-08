@@ -1,32 +1,28 @@
-@include classesGenerator(
-    'text',
-    'color',
-    $commonColors,
-    (
-        addHover: true,
-    )
-);
+$textColors: 'text-main', 'text-main-transparent', 'text-active', 'text-active-secondary';
+$textColors2: 'primary', 'secondary', 'white', 'black';
 
-.d {
-    @include classesGenerator(
-        'text',
-        'color',
-        $darkTheme,
-        (
-            addHover: true,
-            oneLvl: true,
-        )
-    );
+@each $color in $textColors {
+    .#{$color} {
+        color: var(--#{$color});
+        &--hover {
+            &--#{$color} {
+                &:hover {
+                    color: var(--#{$color});
+                }
+            }    
+        }
+    }
 }
 
-.l {
-    @include classesGenerator(
-        'text',
-        'color',
-        $lightTheme,
-        (
-            addHover: true,
-            oneLvl: true,
-        )
-    );
+.text {
+    @each $color in $textColors2 {
+        &-#{$color} {
+            color: var(--#{$color});
+            &--hover {
+                &:hover {
+                    color: var(--#{$color});
+                }
+            }
+        }
+    }
 }

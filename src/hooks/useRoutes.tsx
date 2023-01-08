@@ -3,35 +3,35 @@ import Categories from '../components/pages/Categories';
 import Bikes from '../components/pages/Bikes';
 import FeedBacks from '../components/pages/Feedbacks';
 import N_Common from '../types/common';
-import tr from '../_utils/i18n';
-import { useMemo } from 'react';
-import { LS_LANG_KEY } from '../constants/localStorage';
+import {useMemo} from 'react';
+import {useTranslation} from 'react-i18next';
 
 export default function useRoutes(dependency: Array<any> = []) {
+    const {t} = useTranslation();
     const routes = useMemo<Array<N_Common.T_Route>>(() => {
         return [
             {
                 path: '/',
                 element: <HomePage />,
-                name: tr('home', 'navigation'),
+                name: t('navigation.home'),
             },
             {
                 path: '/categories',
                 element: <Categories />,
-                name: tr('categories', 'navigation'),
+                name: t('navigation.categories'),
             },
             {
                 path: '/feedbacks',
                 element: <FeedBacks />,
-                name: tr('feedbacks', 'navigation'),
+                name: t('navigation.feedbacks'),
             },
             {
                 path: '/bikes',
                 element: <Bikes />,
-                name: tr('bikes', 'navigation'),
+                name: t('navigation.bikes'),
             },
         ];
-    }, dependency);
+    }, [t, ... dependency]);
 
     return routes;
 }

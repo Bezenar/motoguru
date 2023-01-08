@@ -1,7 +1,7 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import ClassRow, {I_ClassRow} from '.';
 import ThemeSwitcher from '../../../_utils/storybook/StoryThemeSwitcher';
-import {CLASS_HEAD} from './constants'
+// import {CLASS_HEAD} from './constants'
 
 export default {
     title: 'atoms/ClassRow',
@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof ClassRow> = (args) => <ClassRow {...args} 
 export const Default = Template.bind({});
 const ARGS: Partial<I_ClassRow> = {
     head: false,
-    item: CLASS_HEAD,
+    // item: CLASS_HEAD,
 };
 
 Default.args = {...ARGS};

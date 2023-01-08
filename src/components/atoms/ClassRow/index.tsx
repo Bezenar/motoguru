@@ -1,5 +1,5 @@
 import styles from './ClassRow.module.scss';
-import cn from "../../../_utils/classnames/cn";
+import cn from 'classnames';
 import Text from '../Text';
 
 export interface I_ClassRow {
