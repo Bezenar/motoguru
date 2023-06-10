@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 
 # firebase
+/.firebase/**
 .firebaserc
 firebase.json
 firestore.indexes.json
