@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 const Page: React.FC = () => {
-
     return(
         <div className="bg-main">
             <Header />

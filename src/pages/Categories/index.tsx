@@ -7,8 +7,10 @@ import ClassRow from './components/ClassRow';
 import {Form} from '../../common/components/Form';
 import {emailRegex} from '../../constants/regex';
 import {useMemo} from 'react';
-import classWork from '../../_utils/db/classWork';
+import useQuery from '../../hooks/useQuery';
+import classWorksAdapter from '../../adapters/classWorksAdapter';
 import type {T_ClassWork} from '../../types';
+import Loader from '../../common/components/Loader';
 
 type T_FormData = {name: string; email: string; phone: string; class: string};
 
@@ -18,12 +20,12 @@ const FORM_DATA: T_FormData = {
     phone: '',
     class: '',
 };
-interface I_Categories {}
 
-const Categories: React.FC<Readonly<I_Categories>> = ({}) => {
+const Categories: React.FC = () => {
     const {t} = useTranslation();
     const categories = usePartialTranslations(['categories', 'list']);
     const tableHead = usePartialTranslations(['categories', 'theory', 'table', 'head']);
+    const classWorks = useQuery<Array<T_ClassWork>>('classWorks', classWorksAdapter);
 
     const validators = useMemo(() => {
         return {
@@ -33,25 +35,23 @@ const Categories: React.FC<Readonly<I_Categories>> = ({}) => {
         };
     }, []);
 
-    const selectData = useMemo(() => {
-        return classWork.map((item) => `${item.date} ${item.time} ${item.category}`);
-    }, []);
+    const selectData = useMemo<Array<string>>(() => {
+        if(!classWorks) return [];
+
+        return (classWorks as Array<T_ClassWork>).map((item) => `${item.date} ${item.time} ${item.category}`);
+    }, [classWorks]);
 
     const handleSubmit = async (data: T_FormData): Promise<any> => {
         console.log(data); //TODO COMPLETE
-        // const serviceId = process.env.REACT_APP_SERVICE_ID;
-        // const templateId = process.env.REACT_APP_CONTACT_TEMPLATE_ID;
-        // const key = process.env.REACT_APP_EMAIL_KEY;
-        // if(serviceId && templateId && key) {
-        //     const res = await emailjs.send(serviceId, templateId, {
-        //         ...data
-        //     }, key);
-        //     return res.status === 200;
-        // } else {
-        //     console.error(new Error('Missed email configuration'))
-        //     return false;
-        // }
     };
+
+    const classWorksTable = useMemo<Array<T_ClassWork>>(() => {
+        const result: Array<T_ClassWork> = [tableHead as T_ClassWork];
+        if(classWorks) {
+            (classWorks as Array<T_ClassWork>).forEach(c => result.push(c));
+        }
+        return result;
+    }, [classWorks]);
 
     return (
         <div className="container pt-12 pb-12">
@@ -67,18 +67,25 @@ const Categories: React.FC<Readonly<I_Categories>> = ({}) => {
             ))}
 
             <IntroText heading={t('categories.theory.heading')} />
-            {[tableHead as T_ClassWork, ...classWork].map((row, i) => (
-                <ClassRow
-                    key={`class-row-${i}`}
-                    head={i === 0}
-                    item={{
-                        category: row.category,
-                        time: row.time,
-                        date: row.date,
-                        place: row.place,
-                    }}
-                />
-            ))}
+            
+            {classWorks
+                ? classWorksTable.map((row, i) => (
+                    <ClassRow
+                        key={i === 0 ? 'head' : row.id }
+                        head={i === 0}
+                        item={{
+                            category: row.category,
+                            time: row.time,
+                            date: row.date,
+                            place: row.place,
+                        }}
+                    />
+                )) : (
+                    <div className="flex jc-center">
+                        <Loader />
+                    </div>
+                )
+            }
 
             <IntroText heading={t('categories.theory.enroll.heading')}>
                 <Text type="paragraph" text={t('categories.theory.enroll.text')} textAlign="center" />
@@ -116,13 +123,15 @@ const Categories: React.FC<Readonly<I_Categories>> = ({}) => {
                         </div>
                     </div>
 
-                    <div className="flex nowrap jc-sb pb-7">
-                        <div className="wid-33 pr-6 sm-wid-100 xs-wid-100 sm-pr-0 xs-pr-0">
+                    <div className="flex nowrap jc-center pb-7">
+                        <div className="wid-50 pr-6 sm-wid-100 xs-wid-100 sm-pr-0 xs-pr-0">
                             <Form.Select placeholder="Select date" data={selectData} dataKey="class" autoSelectFirst />
                         </div>
                     </div>
 
-                    <Form.Submit validators={validators} onSubmit={handleSubmit} extraClasses="sm-wid-100" />
+                    <div className="flex jc-end">
+                        <Form.Submit validators={validators} onSubmit={handleSubmit} extraClasses="wid-100" />
+                    </div>
                 </Form>
             </div>
         </div>

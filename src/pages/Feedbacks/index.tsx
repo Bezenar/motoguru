@@ -4,10 +4,12 @@ import {emailRegex} from '../../constants/regex';
 import {useTranslation} from 'react-i18next';
 import {useContext, useMemo} from 'react';
 import Carousel from '../../common/components/Carousel';
-import FEEDBACKS from '../../_utils/db/feedbacks';
 import FeedBackCard from '../../common/components/FeedBackCard';
 import type {T_AppContext, T_FeedBack} from '../../types';
 import {AppContext} from '../../App';
+import useQuery from '../../hooks/useQuery';
+import feedbacksAdapter from '../../adapters/feedbacksAdapter';
+import Loader from '../../common/components/Loader';
 
 type T_FormData = {name: string; email: string; phone: string; message: string; rate: number};
 const FORM_DATA: T_FormData = {
@@ -21,8 +23,9 @@ const FORM_DATA: T_FormData = {
 const FeedBacks: React.FC = () => {
     const {t} = useTranslation();
     const {breakPoint} = useContext<T_AppContext>(AppContext);
+    const feedbacks = useQuery<Array<T_FeedBack>>('feedbacks', feedbacksAdapter);
 
-    const slideCount = useMemo(() => {
+    const slideCount = useMemo<number>(() => {
         switch (breakPoint) {
             case 'xs':
             case 'sm':
@@ -39,18 +42,6 @@ const FeedBacks: React.FC = () => {
     const handleSubmit = async (data: T_FormData): Promise<any> => {
         //TODO COMPLETE
         console.log(data);
-        // const serviceId = process.env.REACT_APP_SERVICE_ID;
-        // const templateId = process.env.REACT_APP_CONTACT_TEMPLATE_ID;
-        // const key = process.env.REACT_APP_EMAIL_KEY;
-        // if(serviceId && templateId && key) {
-        //     const res = await emailjs.send(serviceId, templateId, {
-        //         ...data
-        //     }, key);
-        //     return res.status === 200;
-        // } else {
-        //     console.error(new Error('Missed email configuration'))
-        //     return false;
-        // }
     };
 
     const validators = useMemo(() => {
@@ -119,12 +110,18 @@ const FeedBacks: React.FC = () => {
                 </div>
             </div>
 
-            <div className="mt-10">
-                <Carousel<T_FeedBack>
-                    data={FEEDBACKS}
-                    slidesCount={slideCount}
-                    renderSlide={(f) => <FeedBackCard key={f.id} feedback={f} />}
-                />
+            <div className="mt-10" >
+                {feedbacks ? (
+                    <Carousel<T_FeedBack>
+                        data={feedbacks as Array<T_FeedBack>}
+                        slidesCount={slideCount}
+                        renderSlide={(f) => <FeedBackCard key={f.id} feedback={f} />}
+                    />
+                ) : (
+                    <div className="flex jc-center">
+                        <Loader />
+                    </div>
+                )}
             </div>
         </>
     );

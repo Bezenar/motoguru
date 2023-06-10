@@ -21,7 +21,7 @@ i18n
     .use(initReactI18next)
     .init({
         resources,
-        lng: localStorage.getItem(LS_LANG_KEY) ?? import.meta.env.VITE_DEFAULT_LANG,
+        lng: localStorage.getItem(LS_LANG_KEY) ?? import.meta.env.VITE_DEFAULT_LANG, 
         returnObjects: false,
         interpolation: {
         escapeValue: false

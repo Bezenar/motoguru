@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# firebase
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
+hosting.**.cache

@@ -16,9 +16,9 @@ export type T_LangObj = {
 };
 
 export type T_ClassWork = {
-    id: number;
-    date: string;
-    time: string;
+    id: string;
+    date: `${string}/${string}/${string}`;
+    time: `${string}:${string}`;
     place: string;
     category: string;
 };
@@ -58,8 +58,9 @@ export type T_AppContextReducer = (state: T_AppContext, payload: Partial<T_AppCo
 export type T_IconStar = {state: 'empty' | 'full' | 'half'};
 
 export type T_Rate =  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 export type T_FeedBack = {
-    id: number;
+    id: string;
     name: string;
     message: string;
     rate: T_Rate;

@@ -2,21 +2,28 @@ import FullLogo from '../../common/assets/logo/FullLogo';
 import OverlayBackground from '../../common/components/OverlayBackground';
 import Text from '../../common/components/Text';
 import IntroText from '../../common/components/IntroText';
-import FeatureCard, { I_FeatureCard } from './components/FeatureCard';
-import {useTranslation} from 'react-i18next';
-import CategoryCard, { I_CategoryCard } from '../../common/components/CategoryCard';
+import FeatureCard from './components/FeatureCard';
+import CategoryCard from '../../common/components/CategoryCard';
 import usePartialTranslations from '../../hooks/usePartialTranslations';
 import Carousel from '../../common/components/Carousel';
-import feedBacks from '../../_utils/db/feedbacks';
 import FeedBackCard from '../../common/components/FeedBackCard';
-import type {T_AppContext, T_FeedBack} from '../../types';
+
 import homeIntro from '../../common/assets/img/homeIntro.jpg';
 import feature1 from '../../common/assets/img/feature1.jpg';
 import feature2 from '../../common/assets/img/feature2.jpg';
 import feature3 from '../../common/assets/img/feature3.jpg';
 import feature4 from '../../common/assets/img/feature4.jpg';
+
+import {useTranslation} from 'react-i18next';
 import {useCallback, useContext, useMemo} from 'react';
 import {AppContext} from '../../App';
+
+import type {T_AppContext, T_FeedBack} from '../../types';
+import type { I_CategoryCard } from '../../common/components/CategoryCard';
+import type { I_FeatureCard } from './components/FeatureCard';
+import useQuery from '../../hooks/useQuery';
+import feedbacksAdapter from '../../adapters/feedbacksAdapter';
+import Loader from '../../common/components/Loader';
 
 const featuresImages = [feature1, feature2, feature3, feature4];
 
@@ -30,6 +37,7 @@ const HomePage: React.FC = () => {
     const {t} = useTranslation();
     const features = usePartialTranslations(['homepage', 'features']);
     const categories = usePartialTranslations(['homepage', 'categories', 'list']);
+    const feedbacks = useQuery<Array<T_FeedBack>>('feedbacks', feedbacksAdapter);
 
     const {breakPoint} = useContext<T_AppContext>(AppContext);
 
@@ -117,12 +125,18 @@ const HomePage: React.FC = () => {
                 ))}
             </div>
 
-            <div className="mt-10">
-                <Carousel<T_FeedBack>
-                    data={feedBacks}
-                    slidesCount={responsiveValues.slidesCount}
-                    renderSlide={(f) => <FeedBackCard key={f.id} feedback={f} />}
-                />
+            <div className="mt-10" >
+                {feedbacks ? (
+                    <Carousel<T_FeedBack>
+                        data={feedbacks as Array<T_FeedBack>}
+                        slidesCount={responsiveValues.slidesCount}
+                        renderSlide={(f) => <FeedBackCard key={f.id} feedback={f} />}
+                    />
+                ) : (
+                    <div className="flex jc-center">
+                        <Loader />
+                    </div>
+                )}
             </div>
         </section>
     );
