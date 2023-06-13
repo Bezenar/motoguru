@@ -1,8 +1,8 @@
 import {T_Translations} from './types';
 
 const en: T_Translations = {
-    common: {
-        name: 'Name',
+    'common': {
+        'name': 'Name',
         email: 'Email',
         phoneNumber: 'Phone',
         send: 'Send',
@@ -21,7 +21,6 @@ const en: T_Translations = {
             home: 'HOMEPAGE',
             categories: 'CATEGORIES',
             feedbacks: 'FEEDBACKS',
-            bikes: 'BIKES',
         },
     },
     footer: {

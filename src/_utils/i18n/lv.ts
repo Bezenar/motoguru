@@ -21,7 +21,6 @@ const lv: T_Translations = {
             home: 'lv-HOMEPAGE',
             categories: 'lv-CATEGORIES',
             feedbacks: 'lv-FEEDBACKS',
-            bikes: 'lv-BIKES',
         },
     },
     footer: {

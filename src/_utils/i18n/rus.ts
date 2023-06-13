@@ -21,7 +21,6 @@ const rus: T_Translations = {
             home: 'rus-HOMEPAGE',
             categories: 'rus-CATEGORIES',
             feedbacks: 'rus-FEEDBACKS',
-            bikes: 'rus-BIKES',
         },
     },
     footer: {

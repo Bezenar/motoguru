@@ -15,7 +15,7 @@ export type T_Translations = {
         requiredField: string;
     }
     header: {
-        navigation: {home: string; categories: string; feedbacks: string; bikes: string;};
+        navigation: {home: string; categories: string; feedbacks: string;};
     },
     footer: {
         contacts: {heading: string; address: string;};

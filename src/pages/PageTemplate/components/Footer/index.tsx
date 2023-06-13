@@ -12,8 +12,9 @@ import InstaIcon from '../../../../common/assets/icons/social/Instagram';
 import YTIcon from '../../../../common/assets/icons/social/Youtube';
 import {Form} from '../../../../common/components/Form';
 import {emailRegex} from '../../../../constants/regex';
-import footerBackground from '../../../../common/assets/img/footerBackground.jpg';
 import {useMemo} from 'react';
+import useGetImages from '../../../../hooks/useGetImages';
+import { IMAGES_NAMES } from '../../../../constants/common';
 
 type T_FormData = {name: string; email: string; phone: string; message: string};
 const FORM_DATA: T_FormData = {
@@ -25,6 +26,7 @@ const FORM_DATA: T_FormData = {
 
 const Footer: React.FC = ({}) => {
     const {t} = useTranslation();
+    const images = useGetImages([IMAGES_NAMES.FOOTERBACKGROUND]);
 
     const handleSubmit = async (data: T_FormData): Promise<boolean> => {
         console.log(data);
@@ -58,7 +60,7 @@ const Footer: React.FC = ({}) => {
     }, []);
 
     return (
-        <OverlayBackground imgSrc={footerBackground}>
+        <OverlayBackground imgSrc={images?.footerBackground ?? ''}>
             <div className="container flex dir-row md-dir-colrev sm-dir-colrev xs-dir-colrev ai-center jc-sb nowrap py-12">
                 <div className="flex dir-col nowrap md-wrap sm-wrap xs-wrap md-dir-row sm-dir-row xs-dir-row md-ai-center sm-ai-center xs-ai-center sm-jc-center md-mt-4 sm-mt-4 xs-mt-4">
                     <Text

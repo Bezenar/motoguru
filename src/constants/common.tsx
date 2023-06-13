@@ -16,3 +16,12 @@ export const BREAK_POINTS = {
     lg: {min: 1264, max: 1904},
     xl: {min: 1904},
 } as const;
+
+export enum IMAGES_NAMES {
+    HOMEINTRO = 'homeIntro',
+    FOOTERBACKGROUND = 'footerBackground',
+    FEATURE1 = 'feature1',
+    FEATURE2 = 'feature2',
+    FEATURE3 = 'feature3',
+    FEATURE4 = 'feature4',
+}

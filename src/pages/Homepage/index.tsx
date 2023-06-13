@@ -8,14 +8,8 @@ import usePartialTranslations from '../../hooks/usePartialTranslations';
 import Carousel from '../../common/components/Carousel';
 import FeedBackCard from '../../common/components/FeedBackCard';
 
-import homeIntro from '../../common/assets/img/homeIntro.jpg';
-import feature1 from '../../common/assets/img/feature1.jpg';
-import feature2 from '../../common/assets/img/feature2.jpg';
-import feature3 from '../../common/assets/img/feature3.jpg';
-import feature4 from '../../common/assets/img/feature4.jpg';
-
 import {useTranslation} from 'react-i18next';
-import {useCallback, useContext, useMemo} from 'react';
+import {useCallback, useContext, useEffect, useMemo} from 'react';
 import {AppContext} from '../../App';
 
 import type {T_AppContext, T_FeedBack} from '../../types';
@@ -24,8 +18,8 @@ import type { I_FeatureCard } from './components/FeatureCard';
 import useQuery from '../../hooks/useQuery';
 import feedbacksAdapter from '../../adapters/feedbacksAdapter';
 import Loader from '../../common/components/Loader';
-
-const featuresImages = [feature1, feature2, feature3, feature4];
+import useGetImages from '../../hooks/useGetImages';
+import { IMAGES_NAMES } from '../../constants/common';
 
 type T_ResponsiveValues = {
     slidesCount: number; 
@@ -38,6 +32,13 @@ const HomePage: React.FC = () => {
     const features = usePartialTranslations(['homepage', 'features']);
     const categories = usePartialTranslations(['homepage', 'categories', 'list']);
     const feedbacks = useQuery<Array<T_FeedBack>>('feedbacks', feedbacksAdapter);
+    const images = useGetImages([
+        IMAGES_NAMES.HOMEINTRO,
+        IMAGES_NAMES.FEATURE1,
+        IMAGES_NAMES.FEATURE2,
+        IMAGES_NAMES.FEATURE3,
+        IMAGES_NAMES.FEATURE4,
+    ]);
 
     const {breakPoint} = useContext<T_AppContext>(AppContext);
 
@@ -77,7 +78,7 @@ const HomePage: React.FC = () => {
 
     return (
         <section>
-            <OverlayBackground imgSrc={homeIntro}>
+            <OverlayBackground imgSrc={images?.homeIntro ?? ''}>
                 <div className="flex dir-col jc-center ai-center h--full" style={{minHeight: 633}}>
                     <FullLogo />
                     <Text type={'paragraph'} text={t('homepage.banner.title')} textAlign="center" textSize="title-xl" />
@@ -103,7 +104,7 @@ const HomePage: React.FC = () => {
                         count={i + 1}
                         text={f.text}
                         btnValue={f.btnValue}
-                        bgSrc={featuresImages[i]}
+                        bgSrc={images ? images[`feature${i + 1}` as IMAGES_NAMES] as string : ''}
                         onClick={() => console.log(f.text + ' ' + i)}
                     />
                 ))}

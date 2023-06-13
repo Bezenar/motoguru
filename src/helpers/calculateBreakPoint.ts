@@ -22,6 +22,6 @@ export default function calculateBreakPoint(): T_BreakPointsKeys {
             }
         }
     }
-    console.log(width, result);
+
     return result;
 }
