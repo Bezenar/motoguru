@@ -1,6 +1,12 @@
+/**
+ * Helpers
+ */
 import serializeDate from '../helpers/serializeDate';
 import serializeTimeFromDate from '../helpers/serializeTimeFromDate';
 
+/**
+ * Types
+ */
 import type { T_ClassWork } from '../types';
 import type { QueryDocumentSnapshot } from 'firebase/firestore';
 

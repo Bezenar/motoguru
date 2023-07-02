@@ -1,15 +1,29 @@
-import {useMemo, useState} from 'react';
-import {LANGUAGES} from '../../../../constants/common';
-import {LS_LANG_KEY} from '../../../../constants/localStorage';
-import {useTranslation} from 'react-i18next';
+/**
+ * Modules
+ */
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
+
+/**
+ * Styles
+ */
 import s from './LangDropdown.module.scss';
-import type {T_LangShort} from '../../../../types';
+
+/**
+ * Constants
+ */
+import { LANGUAGES } from '../../../../constants/common';
+import { LS_LANG_KEY } from '../../../../constants/localStorage';
+
+/**
+ * Types
+ */
+import type { T_LangShort } from '../../../../types';
 
 const LangDropdown: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
-    const {i18n} = useTranslation();
-
+    const { i18n } = useTranslation();
 
     const handleSelect = (langShort: T_LangShort) => {
         setIsVisible(false);
@@ -27,7 +41,7 @@ const LangDropdown: React.FC = () => {
         <div className={s.wrapper}>
             <div className="flex jc-sb ai-center pointer" onClick={() => setIsVisible((prev) => !prev)}>
                 {selected?.value}
-                <span className={cn([s.arrow, {[s.active]: isVisible}])}></span>
+                <span className={cn([s.arrow, { [s.active]: isVisible }])}></span>
             </div>
             {isVisible ? (
                 <ul className={cn([s.list, 'pointer flex dir-col ai-center bg-counter-main-transparent'])}>

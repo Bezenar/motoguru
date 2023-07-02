@@ -1,4 +1,7 @@
-import {T_Translations} from './types';
+/**
+ * Types
+ */
+import type { T_Translations } from './types';
 
 const rus: T_Translations = {
     common: {
@@ -36,8 +39,10 @@ const rus: T_Translations = {
         },
         about: {
             heading: 'rus-About MOTOSCHOOL',
-            paragraphOne: 'rus-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dui quam, consectetur et sapien eu, viverra bibendum nisl. Ut mollis, justo ut tristique fermentum, tellus velit ornare mauris, imperdiet varius arcu felis placerat turpis. Vivamus porttitor.',
-            paragraphTwo: 'rus-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dui quam, consectetur et sapien eu, viverra bibendum nisl. Ut mollis, justo ut tristique fermentum, tellus velit ornare mauris, imperdiet varius arcu felis placerat turpis. Vivamus porttitor.',
+            paragraphOne:
+                'rus-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dui quam, consectetur et sapien eu, viverra bibendum nisl. Ut mollis, justo ut tristique fermentum, tellus velit ornare mauris, imperdiet varius arcu felis placerat turpis. Vivamus porttitor.',
+            paragraphTwo:
+                'rus-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dui quam, consectetur et sapien eu, viverra bibendum nisl. Ut mollis, justo ut tristique fermentum, tellus velit ornare mauris, imperdiet varius arcu felis placerat turpis. Vivamus porttitor.',
         },
         features: {
             1: {
@@ -61,10 +66,10 @@ const rus: T_Translations = {
             heading: 'rus-Categories',
             text: 'rus-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet sed at morbi morbi augue condimentum LV',
             list: {
-                1: {heading: 'rus-AM', text: 'rus-Motorcycle'},
-                2: {heading: 'rus-A1', text: 'rus-Motorcycle'},
-                3: {heading: 'rus-A2', text: 'rus-Motorcycle'},
-                4: {heading: 'rus-A', text: 'rus-Motorcycle'},
+                1: { heading: 'rus-AM', text: 'rus-Motorcycle' },
+                2: { heading: 'rus-A1', text: 'rus-Motorcycle' },
+                3: { heading: 'rus-A2', text: 'rus-Motorcycle' },
+                4: { heading: 'rus-A', text: 'rus-Motorcycle' },
             },
         },
     },
@@ -75,9 +80,9 @@ const rus: T_Translations = {
                 transport: 'rus-motorcycle',
                 head: 'rus-Theory',
                 options: {
-                    1: {option: 'rus-3 meetings / 10h'},
-                    2: {option: 'rus-Possible complete online'},
-                    3: {option: 'rus-Pizza party at theory complete'},
+                    1: { option: 'rus-3 meetings / 10h' },
+                    2: { option: 'rus-Possible complete online' },
+                    3: { option: 'rus-Pizza party at theory complete' },
                 },
             },
             2: {
@@ -85,9 +90,9 @@ const rus: T_Translations = {
                 transport: 'rus-motorcycle',
                 head: 'rus-Theory',
                 options: {
-                    1: {option: 'rus-3 meetings / 10h'},
-                    2: {option: 'rus-Possible complete online'},
-                    3: {option: 'rus-Pizza party at theory complete'},
+                    1: { option: 'rus-3 meetings / 10h' },
+                    2: { option: 'rus-Possible complete online' },
+                    3: { option: 'rus-Pizza party at theory complete' },
                 },
             },
             3: {
@@ -95,9 +100,9 @@ const rus: T_Translations = {
                 transport: 'rus-motorcycle',
                 head: 'rus-Theory',
                 options: {
-                    1: {option: 'rus-3 meetings / 10h'},
-                    2: {option: 'rus-Possible complete online'},
-                    3: {option: 'rus-Pizza party at theory complete'},
+                    1: { option: 'rus-3 meetings / 10h' },
+                    2: { option: 'rus-Possible complete online' },
+                    3: { option: 'rus-Pizza party at theory complete' },
                 },
             },
             4: {
@@ -105,9 +110,9 @@ const rus: T_Translations = {
                 transport: 'rus-motorcycle',
                 head: 'rus-Theory',
                 options: {
-                    1: {option: 'rus-3 meetings / 10h'},
-                    2: {option: 'rus-Possible complete online'},
-                    3: {option: 'rus-Pizza party at theory complete'},
+                    1: { option: 'rus-3 meetings / 10h' },
+                    2: { option: 'rus-Possible complete online' },
+                    3: { option: 'rus-Pizza party at theory complete' },
                 },
             },
         },
@@ -129,7 +134,7 @@ const rus: T_Translations = {
     },
     feedbacks: {
         heading: 'rus-Leave few words about us',
-    }
-}
+    },
+};
 
 export default rus;

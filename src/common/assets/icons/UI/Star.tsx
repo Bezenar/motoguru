@@ -1,10 +1,21 @@
-import {AppContext} from '../../../../App';
-import type {T_AppContext, T_IconStar} from '../../../../types';
-import {useContext} from 'react';
+/**
+ * Modules
+ */
+import { useContext, memo } from 'react';
 
-const Star: React.FC<Readonly<T_IconStar>> = ({state}) => {
-    const {isDark, themes} = useContext<T_AppContext>(AppContext);
-    //@ts-ignore
+/**
+ * Constants
+ */
+import { AppContext } from '../../../../App';
+
+/**
+ * Types
+ */
+import type { T_AppContext, T_IconStar } from '../../../../types';
+
+const Star: React.NamedExoticComponent<Readonly<T_IconStar>> = memo<Readonly<T_IconStar>>(({ state }) => {
+    const { isDark, themes } = useContext<T_AppContext>(AppContext);
+
     const color = themes[isDark ? 'dark' : 'light'].primary;
 
     return (
@@ -42,6 +53,6 @@ const Star: React.FC<Readonly<T_IconStar>> = ({state}) => {
             </defs>
         </svg>
     );
-};
+});
 
 export default Star;

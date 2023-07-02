@@ -1,4 +1,7 @@
-import type {T_ColorsKeys} from '../../types';
+/**
+ * Types
+ */
+import type { T_ColorsKeys } from '../../types';
 
 export const dark: Record<T_ColorsKeys, string> = {
     primary: '#E31F25',

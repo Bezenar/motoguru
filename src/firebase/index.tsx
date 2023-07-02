@@ -1,22 +1,30 @@
-import { initializeApp } from "firebase/app";
-import { FirebaseStorage, getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-import {getFirestore, collection, getDocs, QueryDocumentSnapshot, DocumentData} from 'firebase/firestore';
-import { IMAGES_NAMES } from "../constants/common";
+/**
+ * Modules
+ */
+import { initializeApp } from 'firebase/app';
+import { FirebaseStorage, getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
+import { getFirestore, collection, getDocs, QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
 
+/**
+ * Constants
+ */
+import { IMAGES_NAMES } from '../constants/common';
 
 export type T_Collections = 'classWorks' | 'feedbacks' | 'translations';
 
 type T_GetOptions<R = any> = {
     collectionName: T_Collections;
     docsMutation?: (response: Array<QueryDocumentSnapshot<DocumentData>>) => R;
-}
+};
 class Database {
+    //Firestore collections
     public readonly collections = {
         classWorks: 'classWorks',
         feedbacks: 'feedback',
         translations: 'translations',
     };
 
+    // Firestore config
     private readonly config = {
         apiKey: import.meta.env.VITE_FB_API_KEY,
         authDomain: import.meta.env.VITE_FB_AUTH_DOMAIN,
@@ -24,7 +32,7 @@ class Database {
         storageBucket: import.meta.env.VITE_FB_STORAGE_BUCKET,
         messagingSenderId: import.meta.env.VITE_FB_MSG_SENDER_ID,
         appId: import.meta.env.VITE_FB_APP_ID,
-        measurementId: import.meta.env.VITE_FB_MEASUREMENT_UD
+        measurementId: import.meta.env.VITE_FB_MEASUREMENT_UD,
     };
 
     private firebaseApp: null | ReturnType<typeof initializeApp> = null;
@@ -32,7 +40,7 @@ class Database {
     private storage: null | FirebaseStorage = null;
     private storageRef: null | any = null;
 
-    private cache: Partial<Record<keyof typeof this.collections, {clear?: any, mutated?: any}>> = {};
+    private cache: Partial<Record<keyof typeof this.collections, { clear?: any; mutated?: any }>> = {};
     private imagesCache: Partial<Record<IMAGES_NAMES, string>> = {};
 
     constructor() {
@@ -43,31 +51,34 @@ class Database {
     }
 
     cacheResult<R>(collection: keyof typeof this.collections, data: R, isMutated: boolean): void {
-        this.cache[collection] = {...this.cache[collection], [isMutated ? 'mutated' : 'clear']: data};
+        this.cache[collection] = { ...this.cache[collection], [isMutated ? 'mutated' : 'clear']: data };
     }
 
-    async getData<R = any>(options: T_GetOptions<R>): Promise<R | Array<QueryDocumentSnapshot<DocumentData>> | undefined> {
+    async getData<R = any>(
+        options: T_GetOptions<R>
+    ): Promise<R | Array<QueryDocumentSnapshot<DocumentData>> | undefined> {
         try {
-            if(this.fireStore) {
+            if (this.fireStore) {
                 const cache = this.cache[options.collectionName];
 
-                if(cache) {
+                if (cache) {
                     return cache[options.docsMutation ? 'mutated' : 'clear'];
                 }
 
                 const querySnapshot = await getDocs(collection(this.fireStore, options.collectionName));
-    
+
                 const data: Array<QueryDocumentSnapshot<DocumentData>> = querySnapshot.docs;
+                
                 this.cacheResult(options.collectionName, data, false);
 
-                if(options.docsMutation) {
+                if (options.docsMutation) {
                     const mutatedDocs: R = options.docsMutation(data);
 
                     this.cacheResult<R>(options.collectionName, mutatedDocs, true);
 
-                    return mutatedDocs
+                    return mutatedDocs;
                 }
-    
+
                 return data;
             } else {
                 throw 'fireStore not initialized';
@@ -87,13 +98,12 @@ class Database {
             resolvedUrlPromises.forEach((url, index) => {
                 const name: IMAGES_NAMES = images.items[index].fullPath.split('.')[0] as IMAGES_NAMES;
 
-                if(!this.imagesCache[name]) this.imagesCache[name] = url;
+                if (!this.imagesCache[name]) this.imagesCache[name] = url;
 
-                if(imagesNames.includes(name)) result[name] = this.imagesCache[name];
+                if (imagesNames.includes(name)) result[name] = this.imagesCache[name];
             });
 
             return result;
-
         } catch (error) {
             console.log(`Image loading error: ${error}`);
         }

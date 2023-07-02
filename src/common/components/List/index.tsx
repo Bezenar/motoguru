@@ -1,16 +1,27 @@
-import {Fragment} from 'react';
+/**
+ * Modules
+ */
 import cn from 'classnames';
-import Text from '../Text';
+
+/**
+ * Styles
+ */
 import styles from './List.module.scss';
+
+/**
+ * Components
+ */
+import Text from '../Text';
 
 export interface I_List {
     head?: string;
     list: Array<string>;
 }
 
-const List: React.FC<Readonly<I_List>> = ({head = null, list}) => {
+const List: React.FC<Readonly<I_List>> = ({ head = null, list }) => {
+    
     return (
-        <Fragment>
+        <>
             {head ? <Text type="paragraph" text={head} textSize="heading-sm" extraClasses="pb-8" /> : null}
             <ul className={cn([styles.list, 'text--primary flex dir-col ai-center jc-sa nowrap'])}>
                 {list.map((row, i) => (
@@ -19,7 +30,7 @@ const List: React.FC<Readonly<I_List>> = ({head = null, list}) => {
                     </li>
                 ))}
             </ul>
-        </Fragment>
+        </>
     );
 };
 

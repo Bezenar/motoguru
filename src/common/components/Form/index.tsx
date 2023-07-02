@@ -1,27 +1,40 @@
-import {useCallback, useReducer, createContext, ReactElement, ReactNode} from 'react';
+/**
+ * Modules
+ */
+import { useCallback, useReducer, createContext, ReactElement, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+
+/**
+ * Components
+ */
 import InputField from './InputField';
 import Submit from './Submit';
 import Textarea from './TextArea';
 import Select from './Select';
 import Text from '../Text';
-import Success from '../../assets/icons/UI/Success';
 import Loader from '../Loader';
-import {useTranslation} from 'react-i18next';
+
+/**
+ * Icons
+ */
+import Success from '../../assets/icons/UI/Success';
+
 
 export interface I_FormWrapper<T> {
     data: T;
     width: number;
 }
+
 const FormContext = createContext<I_FormWrapper<any>['data']>({});
 
 function Form<T = any>({
     data,
     width,
     children,
-}: I_FormWrapper<T> & {children: ReactNode}): ReactElement<I_FormWrapper<T>> {
-    type T_State = T & {isInProgress?: boolean; isSended?: boolean};
+}: I_FormWrapper<T> & { children: ReactNode }): ReactElement<I_FormWrapper<T>> {
+    type T_State = T & { isInProgress?: boolean; isSended?: boolean };
     const [state, dispatch] = useReducer<(prev: T_State, next: Partial<T_State>) => T_State, T>(
-        (prev: T_State, next: Partial<T_State>) => ({...prev, ...next}),
+        (prev: T_State, next: Partial<T_State>) => ({ ...prev, ...next }),
         {
             ...data,
             isInProgress: false,
@@ -30,7 +43,7 @@ function Form<T = any>({
         (state: T_State) => state
     );
 
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const handleUpdateState = useCallback(
         (next: Partial<T_State>) => {
@@ -40,8 +53,8 @@ function Form<T = any>({
     );
 
     return (
-        <FormContext.Provider value={{...state, dispatch: handleUpdateState}}>
-            <div className="pa-12 bg-main-transparent" style={{maxWidth: width}}>
+        <FormContext.Provider value={{ ...state, dispatch: handleUpdateState }}>
+            <div className="pa-12 bg-main-transparent" style={{ maxWidth: width }}>
                 {state.isInProgress ? (
                     <div className="flex wid-100 ai-center jc-center">
                         <Loader />
@@ -64,4 +77,4 @@ Form.Textarea = Textarea;
 Form.Submit = Submit;
 Form.Select = Select;
 
-export {Form, FormContext};
+export { Form, FormContext };

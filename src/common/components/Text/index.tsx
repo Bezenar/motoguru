@@ -1,4 +1,7 @@
-import {createElement} from 'react';
+/**
+ * Modules
+ */
+import { createElement } from 'react';
 import cn from 'classnames';
 
 export interface I_Text {
@@ -36,7 +39,7 @@ const Text: React.FC<Readonly<I_Text>> = ({
                 `text--${textSize}`,
                 `text-${textColor}`,
                 `text--${textAlign}`,
-                {[extraClasses]: extraClasses.length > 0},
+                { [extraClasses]: extraClasses.length > 0 },
             ]),
         },
         [text]

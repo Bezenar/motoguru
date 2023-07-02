@@ -1,6 +1,17 @@
-import {BREAK_POINTS} from '../constants/common';
+/**
+ * Constants
+ */
+import { BREAK_POINTS } from '../constants/common';
+
+/**
+ * Types
+ */
 import type { T_BreakPointsKeys } from '../types';
 
+/**
+ * 
+ * @description get screen width and return resolution size key.
+ */
 export default function calculateBreakPoint(): T_BreakPointsKeys {
     const width: number = window.innerWidth;
     const keys = Object.keys(BREAK_POINTS);

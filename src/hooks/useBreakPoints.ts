@@ -1,14 +1,27 @@
-import {useEffect} from 'react';
+/**
+ * Modules
+ */
+import { useEffect } from 'react';
+
+/**
+ * Helpers
+ */
 import calculateBreakPoint from '../helpers/calculateBreakPoint';
 
-import type {T_BreakPointsKeys} from '../types';
+/**
+ * Types
+ */
+import type { T_BreakPointsKeys } from '../types';
 
-export default function useBreakPoints(
-    storNew: (br: T_BreakPointsKeys) => void
-): void {
+/**
+ * 
+ * @param {Function} storeNew 
+ * @description Event listener to get and store breakpoint.
+ */
+export default function useBreakPoints(storeNew: (br: T_BreakPointsKeys) => void): void {
     const handleResize = () => {
         const result = calculateBreakPoint();
-        storNew(result);
+        storeNew(result);
     };
 
     useEffect(() => {
@@ -16,3 +29,4 @@ export default function useBreakPoints(
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 }
+

@@ -1,22 +1,45 @@
-import s from './Footer.module.scss';
-import {useTranslation} from 'react-i18next';
+/**
+ * Modules
+ */
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
+
+/**
+ * Styles
+ */
+import s from './Footer.module.scss';
+
+/**
+ * Components
+ */
 import OverlayBackground from '../../../../common/components/OverlayBackground';
 import Text from '../../../../common/components/Text';
+import { Form } from '../../../../common/components/Form';
 import SocialLink from '../../../../common/components/SocialLink';
+
+/**
+ * Icons
+ */
 import Location from '../../../../common/assets/icons/UI/Location';
 import Envelope from '../../../../common/assets/icons/UI/Envelope';
 import Phone from '../../../../common/assets/icons/UI/Phone';
 import FBIcon from '../../../../common/assets/icons/social/Facebook';
 import InstaIcon from '../../../../common/assets/icons/social/Instagram';
 import YTIcon from '../../../../common/assets/icons/social/Youtube';
-import {Form} from '../../../../common/components/Form';
-import {emailRegex} from '../../../../constants/regex';
-import {useMemo} from 'react';
+
+/**
+ * Custom hooks
+ */
 import useGetImages from '../../../../hooks/useGetImages';
+
+/**
+ * Constants
+ */
+import { emailRegex } from '../../../../constants/regex';
 import { IMAGES_NAMES } from '../../../../constants/common';
 
-type T_FormData = {name: string; email: string; phone: string; message: string};
+type T_FormData = { name: string; email: string; phone: string; message: string };
 const FORM_DATA: T_FormData = {
     name: '',
     email: '',
@@ -25,7 +48,7 @@ const FORM_DATA: T_FormData = {
 };
 
 const Footer: React.FC = ({}) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const images = useGetImages([IMAGES_NAMES.FOOTERBACKGROUND]);
 
     const handleSubmit = async (data: T_FormData): Promise<boolean> => {

@@ -1,5 +1,8 @@
-import {DocumentData, QueryDocumentSnapshot} from 'firebase/firestore';
-import {T_LangShort} from '../types';
+/**
+ * Types
+ */
+import type { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import type { T_LangShort } from '../types';
 
 export default function translationsAdapter(
     res: Array<QueryDocumentSnapshot<DocumentData>>

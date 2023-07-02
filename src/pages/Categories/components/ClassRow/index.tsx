@@ -1,5 +1,16 @@
-import s from './ClassRow.module.scss';
+/**
+ * Modules
+ */
 import cn from 'classnames';
+
+/**
+ * Styles
+ */
+import s from './ClassRow.module.scss';
+
+/**
+ * Components
+ */
 import Text from '../../../../common/components/Text';
 
 export interface I_ClassRow {
@@ -12,9 +23,12 @@ export interface I_ClassRow {
     };
 }
 
-const ClassRow: React.FC<Readonly<I_ClassRow>> = ({head = false, item}) => {
+const ClassRow: React.FC<Readonly<I_ClassRow>> = ({ head = false, item }) => {
+    
     return (
-        <div className={cn([s.row, 'flex nowrap text--center', {'border--primary': !head}, {[s.borderTop]: !head}])}>
+        <div
+            className={cn([s.row, 'flex nowrap text--center', { 'border--primary': !head }, { [s.borderTop]: !head }])}
+        >
             <div className="wid-25">
                 <Text type="line" text={item.category} textSize={head ? 'heading-md' : 'sm'} />
             </div>

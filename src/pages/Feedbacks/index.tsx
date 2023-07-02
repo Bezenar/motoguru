@@ -1,17 +1,40 @@
+/**
+ * Modules
+ */
+import { useTranslation } from 'react-i18next';
+import { useContext, useMemo } from 'react';
+
+/**
+ * Components
+ */
 import HeaderWithText from '../../common/components/IntroText';
-import {Form} from '../../common/components/Form';
-import {emailRegex} from '../../constants/regex';
-import {useTranslation} from 'react-i18next';
-import {useContext, useMemo} from 'react';
 import Carousel from '../../common/components/Carousel';
 import FeedBackCard from '../../common/components/FeedBackCard';
-import type {T_AppContext, T_FeedBack} from '../../types';
-import {AppContext} from '../../App';
-import useQuery from '../../hooks/useQuery';
-import feedbacksAdapter from '../../adapters/feedbacksAdapter';
+import { Form } from '../../common/components/Form';
 import Loader from '../../common/components/Loader';
 
-type T_FormData = {name: string; email: string; phone: string; message: string; rate: number};
+/**
+ * Custom hooks
+ */
+import useQuery from '../../hooks/useQuery';
+
+/**
+ * Helpers
+ */
+import feedbacksAdapter from '../../adapters/feedbacksAdapter';
+
+/**
+ * Constants
+ */
+import { emailRegex } from '../../constants/regex';
+import { AppContext } from '../../App';
+
+/**
+ * Types
+ */
+import type { T_AppContext, T_FeedBack } from '../../types';
+
+type T_FormData = { name: string; email: string; phone: string; message: string; rate: number };
 const FORM_DATA: T_FormData = {
     name: '',
     email: '',
@@ -21,8 +44,8 @@ const FORM_DATA: T_FormData = {
 };
 
 const FeedBacks: React.FC = () => {
-    const {t} = useTranslation();
-    const {breakPoint} = useContext<T_AppContext>(AppContext);
+    const { t } = useTranslation();
+    const { breakPoint } = useContext<T_AppContext>(AppContext);
     const feedbacks = useQuery<Array<T_FeedBack>>('feedbacks', feedbacksAdapter);
 
     const slideCount = useMemo<number>(() => {
@@ -104,13 +127,17 @@ const FeedBacks: React.FC = () => {
                                 />
                             </div>
 
-                            <Form.Submit validators={validators} onSubmit={handleSubmit} extraClasses="sm-wid-100 xs-wid-100" />
+                            <Form.Submit
+                                validators={validators}
+                                onSubmit={handleSubmit}
+                                extraClasses="sm-wid-100 xs-wid-100"
+                            />
                         </div>
                     </Form>
                 </div>
             </div>
 
-            <div className="mt-10" >
+            <div className="mt-10">
                 {feedbacks ? (
                     <Carousel<T_FeedBack>
                         data={feedbacks as Array<T_FeedBack>}

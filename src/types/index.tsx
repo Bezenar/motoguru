@@ -1,5 +1,8 @@
 import {Dispatch} from 'react';
 import {BREAK_POINTS} from '../constants/common';
+import themes from '../_utils/themes';
+
+export type T_Themes = keyof typeof themes;
 
 export type T_Route = {
     path: string;
@@ -46,9 +49,10 @@ export type T_ColorsKeys =
 export type T_ThemesKeys = 'dark' | 'light';
 
 export type T_AppContext = {
+    isTranslationsLoaded: boolean;
     isDark: boolean;
     language: T_LangShort;
-    themes: Record<T_ThemesKeys, Record<T_ColorsKeys, string>>;
+    themes: Record<T_Themes, Record<T_ColorsKeys, string>>;
     breakPoint: T_BreakPointsKeys;
     dispatch?: Dispatch<Partial<T_AppContext>>
 };

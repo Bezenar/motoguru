@@ -1,11 +1,27 @@
-import HomePage from '../pages/Homepage';
-import Categories from '../pages/Categories';
-import FeedBacks from '../pages/Feedbacks';
+/**
+ * Modules
+ */
 import {useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 
+/**
+ * Components
+ */
+import HomePage from '../pages/Homepage';
+import Categories from '../pages/Categories';
+import FeedBacks from '../pages/Feedbacks';
+
+
+/**
+ * Types
+ */
 import type {T_Route} from '../types';
 
+/**
+ * 
+ * @param {Array} dependency: useEffect triggers
+ * @returns {Array}: App routes.
+ */
 export default function useRoutes(dependency: Array<any> = []) {
     const {t} = useTranslation();
     const routes = useMemo<Array<T_Route>>(() => {
@@ -26,7 +42,7 @@ export default function useRoutes(dependency: Array<any> = []) {
                 name: t('header.navigation.feedbacks'),
             },
         ];
-    }, [t, ...dependency]);
+    }, dependency);
 
     return routes;
 }

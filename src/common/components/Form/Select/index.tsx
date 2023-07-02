@@ -1,7 +1,22 @@
-import {useContext, useEffect, useRef, useState} from 'react';
-import s from './Select.module.scss';
-import {FormContext} from '..';
+/**
+ * Modules
+ */
+import { useContext, useEffect, useRef, useState } from 'react';
 import cn from 'classnames';
+
+/**
+ * Styles
+ */
+import s from './Select.module.scss';
+
+/**
+ * Constants
+ */
+import { FormContext } from '..';
+
+/**
+ * Custom hooks
+ */
 import useDetectFirstRender from '../../../../hooks/useDetectFirstRender';
 
 export interface I_Select {
@@ -11,14 +26,14 @@ export interface I_Select {
     placeholder?: string;
 }
 
-const Select: React.FC<Readonly<I_Select>> = ({data, dataKey, autoSelectFirst = false, placeholder = ''}) => {
+const Select: React.FC<Readonly<I_Select>> = ({ data, dataKey, autoSelectFirst = false, placeholder = '' }) => {
     const context = useContext(FormContext);
     const firstRender = useDetectFirstRender();
     const selectRef = useRef<HTMLDivElement>(null);
     const [isListVisible, setIsListVisible] = useState<boolean>(false);
 
     const handleChange = (val: string) => {
-        context.dispatch({[dataKey]: val});
+        context.dispatch({ [dataKey]: val });
     };
 
     const toggleList = () => {
@@ -50,7 +65,7 @@ const Select: React.FC<Readonly<I_Select>> = ({data, dataKey, autoSelectFirst = 
     return (
         <div className={cn(s.wrapper, 'text--sm text-main')} ref={selectRef}>
             <div
-                className={cn(s.selected, {[s.active]: context[dataKey].length > 0})}
+                className={cn(s.selected, { [s.active]: context[dataKey].length > 0 })}
                 onClick={() => setIsListVisible((prev) => !prev)}
             >
                 <span>{context[dataKey].length ? context[dataKey] : placeholder}</span>

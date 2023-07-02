@@ -1,18 +1,41 @@
-import {useTranslation} from 'react-i18next';
-import usePartialTranslations from '../../hooks/usePartialTranslations';
+/**
+ * Modules
+ */
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+
+/**
+ * Components
+ */
 import CategoryRow from './components/CategoryRow';
 import IntroText from '../../common/components/IntroText';
 import Text from '../../common/components/Text';
 import ClassRow from './components/ClassRow';
-import {Form} from '../../common/components/Form';
-import {emailRegex} from '../../constants/regex';
-import {useMemo} from 'react';
+import { Form } from '../../common/components/Form';
+
+/**
+ * Custom hooks
+ */
+import usePartialTranslations from '../../hooks/usePartialTranslations';
 import useQuery from '../../hooks/useQuery';
+
+/**
+ * Helpers
+ */
 import classWorksAdapter from '../../adapters/classWorksAdapter';
-import type {T_ClassWork} from '../../types';
+
+/**
+ * Constants
+ */
+import { emailRegex } from '../../constants/regex';
+
+/**
+ * Types
+ */
+import type { T_ClassWork } from '../../types';
 import Loader from '../../common/components/Loader';
 
-type T_FormData = {name: string; email: string; phone: string; class: string};
+type T_FormData = { name: string; email: string; phone: string; class: string };
 
 const FORM_DATA: T_FormData = {
     name: '',
@@ -22,7 +45,7 @@ const FORM_DATA: T_FormData = {
 };
 
 const Categories: React.FC = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const categories = usePartialTranslations(['categories', 'list']);
     const tableHead = usePartialTranslations(['categories', 'theory', 'table', 'head']);
     const classWorks = useQuery<Array<T_ClassWork>>('classWorks', classWorksAdapter);
@@ -36,7 +59,7 @@ const Categories: React.FC = () => {
     }, []);
 
     const selectData = useMemo<Array<string>>(() => {
-        if(!classWorks) return [];
+        if (!classWorks) return [];
 
         return (classWorks as Array<T_ClassWork>).map((item) => `${item.date} ${item.time} ${item.category}`);
     }, [classWorks]);
@@ -47,8 +70,8 @@ const Categories: React.FC = () => {
 
     const classWorksTable = useMemo<Array<T_ClassWork>>(() => {
         const result: Array<T_ClassWork> = [tableHead as T_ClassWork];
-        if(classWorks) {
-            (classWorks as Array<T_ClassWork>).forEach(c => result.push(c));
+        if (classWorks) {
+            (classWorks as Array<T_ClassWork>).forEach((c) => result.push(c));
         }
         return result;
     }, [classWorks]);
@@ -67,11 +90,11 @@ const Categories: React.FC = () => {
             ))}
 
             <IntroText heading={t('categories.theory.heading')} />
-            
-            {classWorks
-                ? classWorksTable.map((row, i) => (
+
+            {classWorks ? (
+                classWorksTable.map((row, i) => (
                     <ClassRow
-                        key={i === 0 ? 'head' : row.id }
+                        key={i === 0 ? 'head' : row.id}
                         head={i === 0}
                         item={{
                             category: row.category,
@@ -80,12 +103,12 @@ const Categories: React.FC = () => {
                             place: row.place,
                         }}
                     />
-                )) : (
-                    <div className="flex jc-center">
-                        <Loader />
-                    </div>
-                )
-            }
+                ))
+            ) : (
+                <div className="flex jc-center">
+                    <Loader />
+                </div>
+            )}
 
             <IntroText heading={t('categories.theory.enroll.heading')}>
                 <Text type="paragraph" text={t('categories.theory.enroll.text')} textAlign="center" />

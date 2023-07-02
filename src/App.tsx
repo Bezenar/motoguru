@@ -1,18 +1,50 @@
+/**
+ * Modules
+ */
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { createContext, useEffect, useReducer } from 'react';
+import { DB } from './firebase';
+import i18n from 'i18next';
+
+/**
+ * Styles
+ */
 import './_utils/scss/main.scss';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+
+/**
+ * Components
+ */
 import RootTemplate from './pages/PageTemplate';
+
+/**
+ * Custom hooks
+ */
 import useRoutes from './hooks/useRoutes';
-import {createContext, useEffect, useReducer} from 'react';
 import useBreakPoints from './hooks/useBreakPoints';
+
+/**
+ * Helpers
+ */
 import calculateBreakPoint from './helpers/calculateBreakPoint';
-import {LS_LANG_KEY, LS_THEME_KEY} from './constants/localStorage';
+import translationsAdapter from './adapters/translationsAdapter';
+
+/**
+ * Constants
+ */
+import { LS_LANG_KEY, LS_THEME_KEY } from './constants/localStorage';
 import themes from './_utils/themes';
-import type {T_AppContext, T_LangShort, T_AppContextReducer, T_BreakPointsKeys} from './types';
+import { PAGE_LOADING_TIMEOUT } from './constants/common';
+
+/**
+ * Types
+ */
+import type { T_AppContext, T_LangShort, T_AppContextReducer, T_BreakPointsKeys } from './types';
 
 //@ts-ignore
 export const AppContext = createContext<T_Context>({});
 
 const INITIAL_CONTEXT: T_AppContext = {
+    isTranslationsLoaded: false,
     isDark: localStorage.getItem(LS_THEME_KEY) !== 'light',
     themes: themes,
     language: (localStorage.getItem(LS_LANG_KEY) ?? import.meta.env.VITE_DEFAULT_LANG) as T_LangShort,
@@ -21,12 +53,12 @@ const INITIAL_CONTEXT: T_AppContext = {
 
 const App: React.FC<{}> = ({}) => {
     const [state, dispatch] = useReducer<T_AppContextReducer, T_AppContext>(
-        (prev, next) => ({...prev, ...next}),
+        (prev, next) => ({ ...prev, ...next }),
         INITIAL_CONTEXT,
         (state) => state
     );
 
-    const routes = useRoutes();
+    const routes = useRoutes([state.isTranslationsLoaded]);
 
     const switchTheme = () => {
         localStorage.setItem(LS_THEME_KEY, state.isDark ? 'dark' : 'light');
@@ -40,10 +72,24 @@ const App: React.FC<{}> = ({}) => {
         switchTheme();
     }, [state.isDark]);
 
-    useBreakPoints((payload: T_BreakPointsKeys) => dispatch({breakPoint: payload}));
+    useEffect(() => {
+        DB.getData({ collectionName: 'translations', docsMutation: translationsAdapter }).then((res) => {
+            if (res) {
+                Object.entries(res).forEach(([key, value]) => {
+                    i18n.addResourceBundle(key, 'translation', value);
+                });
+
+                setTimeout(() => {
+                    dispatch({ isTranslationsLoaded: true });
+                }, PAGE_LOADING_TIMEOUT);
+            }
+        });
+    }, []);
+
+    useBreakPoints((payload: T_BreakPointsKeys) => dispatch({ breakPoint: payload }));
 
     return (
-        <AppContext.Provider value={{...state, dispatch} as T_AppContext}>
+        <AppContext.Provider value={{ ...state, dispatch } as T_AppContext}>
             <BrowserRouter>
                 <Routes>
                     <Route path={'/'} element={<RootTemplate />}>
@@ -55,6 +101,6 @@ const App: React.FC<{}> = ({}) => {
             </BrowserRouter>
         </AppContext.Provider>
     );
-}
+};
 
 export default App;

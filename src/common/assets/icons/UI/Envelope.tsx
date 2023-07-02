@@ -1,9 +1,20 @@
-import {useContext} from 'react';
-import {T_AppContext} from '../../../../types';
-import {AppContext} from '../../../../App';
+/**
+ * Modules
+ */
+import { memo, useContext } from 'react';
 
-const Envelope: React.FC = () => {
-    const {isDark, themes} = useContext<T_AppContext>(AppContext);
+/**
+ * Constants
+ */
+import { AppContext } from '../../../../App';
+
+/**
+ * Types
+ */
+import type { T_AppContext } from '../../../../types';
+
+const Envelope: React.NamedExoticComponent = memo(() => {
+    const { isDark, themes } = useContext<T_AppContext>(AppContext);
 
     const color = themes[isDark ? 'dark' : 'light'].primary;
 
@@ -33,6 +44,6 @@ const Envelope: React.FC = () => {
             />
         </svg>
     );
-};
+});
 
 export default Envelope;

@@ -1,7 +1,22 @@
-import {ChangeEvent, useCallback, useState, useContext} from 'react';
-import {FormContext} from '..';
+/**
+ * Modules
+ */
+import { useCallback, useState, useContext } from 'react';
 import cn from 'classnames';
+
+/**
+ * Styles
+ */
 import s from './InputField.module.scss';
+
+/**
+ * Constants
+ */
+import { FormContext } from '..';
+
+/**
+ * Custom hooks
+ */
 import useFirstChange from '../../../../hooks/useFirstChange';
 import useValidateErrors from '../../../../hooks/useValidate';
 
@@ -37,8 +52,8 @@ const InputField: React.FC<Readonly<I_InputField>> = ({
     });
 
     const handleChange = useCallback(
-        (e: ChangeEvent<HTMLInputElement>) => {
-            context.dispatch({[dataKey]: e.target.value});
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            context.dispatch({ [dataKey]: e.target.value });
         },
         [context.dispatch]
     );
@@ -49,9 +64,9 @@ const InputField: React.FC<Readonly<I_InputField>> = ({
                 <input
                     className={cn([
                         'text--sm text-main',
-                        {[s.inputError]: innerErrors.length > 0},
-                        {[s.inputActive]: !isFocused && context[dataKey].length > 0},
-                        {[s.error]: innerErrors.length > 0 && !isFocused},
+                        { [s.inputError]: innerErrors.length > 0 },
+                        { [s.inputActive]: !isFocused && context[dataKey].length > 0 },
+                        { [s.error]: innerErrors.length > 0 && !isFocused },
                         s.input,
                     ])}
                     type="text"

@@ -1,5 +1,12 @@
+/**
+ * Modules
+ */
 import {useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
+
+/**
+ * Custom hooks
+ */
 import useFirstChange from './useFirstChange';
 
 type T_Arg = {
@@ -10,13 +17,22 @@ type T_Arg = {
     errors: Array<string>;
 };
 
+/**
+ * 
+ * @param {Object}
+ * @returns {Array}
+ * 
+ * @description provide validations for passed value. For validation use functions from param
+ */
 export default function useValidateErrors({value, required, validators, errors, deps}: T_Arg) {
     const isFirstChange = useFirstChange(value);
     const {t} = useTranslation();
 
     const innerErrors = useMemo(() => {
         const err: Array<string> = [];
+
         if (required && value.length === 0 && !isFirstChange) err.push(t('errors.requiredField'));
+
         validators.forEach((validator, i) => {
             const isValid = validator(value);
             if (isValid && !isFirstChange) {

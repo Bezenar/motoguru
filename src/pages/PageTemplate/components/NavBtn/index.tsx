@@ -1,17 +1,25 @@
-import {NavLink} from 'react-router-dom';
+/**
+ * Modules
+ */
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+
+/**
+ * Styles
+ */
 import styles from './NavBtn.module.scss';
 
-import type {T_Route} from '../../../../types';
+import type { T_Route } from '../../../../types';
 
 export interface I_NavBtn {
     route: T_Route;
 }
 
-const NavBtn: React.FC<Readonly<I_NavBtn>> = ({route}) => {
+const NavBtn: React.FC<Readonly<I_NavBtn>> = ({ route }) => {
+    
     return (
         <NavLink to={route.path}>
-            {({isActive}) => (
+            {({ isActive }) => (
                 <span
                     className={cn([
                         styles.navBtn,

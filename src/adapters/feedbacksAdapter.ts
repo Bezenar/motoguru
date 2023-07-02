@@ -1,5 +1,8 @@
-import {DocumentData, QueryDocumentSnapshot} from 'firebase/firestore';
-import {T_FeedBack} from '../types';
+/**
+ * Types
+ */
+import type { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import type { T_FeedBack } from '../types';
 
 export default function feedbacksAdapter(docs: Array<QueryDocumentSnapshot<DocumentData>>): Array<T_FeedBack> {
     return docs.map((doc) => {

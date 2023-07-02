@@ -1,4 +1,6 @@
-import * as React from 'react';
+/**
+ * Modules
+ */
 import Slider from 'nuka-carousel';
 
 export interface I_Carousel<T> {
@@ -12,6 +14,7 @@ function Carousel<T>({
     slidesCount,
     renderSlide,
 }: Readonly<I_Carousel<T>>): React.ReactElement<Readonly<I_Carousel<T>>, React.FC> {
+    
     return (
         <Slider
             autoplay={true}
